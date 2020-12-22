@@ -1,0 +1,49 @@
+<ion-row class="ion-align-items-center">
+    <ion-col size="8">
+        <div class="ion-text-start">
+            <ion-title color="secondary" size="large">
+                {{originRole.name}}
+                <ion-icon color="secondary" src="../../../assets/icon/edit.svg"></ion-icon>
+            </ion-title>
+        </div>
+    </ion-col>
+
+</ion-row>
+
+
+<form [formGroup]="createForm">
+    <!-- <ion-item lines="none">
+
+        <ion-label class="label" position="stacked">Name der Rolle*</ion-label>
+        <ion-input class="inputField" clearInput type="text" [(ngModel)]="role.name" formControlName="name" name="name"
+            placeholder="Mitarbeiter"></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.name">
+                <div
+                    *ngIf="createForm.get('name').hasError(validation.type) && (createForm.get('name').dirty || createForm.get('name').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+    </ion-item> -->
+
+            <ion-label class="label" position="stacked">Name der Rolle*</ion-label>
+            <ion-input class="inputField"  clearInput type="text" [(ngModel)]="role.name" formControlName="name" name="name"
+                       placeholder="Mitarbeiter"></ion-input>
+            <div>
+                <ng-container *ngFor="let validation of validation_messages.name">
+                    <div
+                            *ngIf="createForm.get('name').hasError(validation.type) && (createForm.get('name').dirty || createForm.get('name').touched)">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+                <ion-text class="error_message" *ngIf="roleExists">Diese Rolle existiert bereits</ion-text>
+            </div>
+    <ion-button [disabled]="createForm.invalid" full class="primaryButtonIcon" color="primary" type="submit" full
+        (click)="presentAlertConfirm()">
+        <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+        <ion-text>Aktualisieren</ion-text>
+
+    </ion-button>
+</form>

@@ -1,0 +1,41 @@
+<ion-content>
+    <ion-item lines="none">
+        <h2>Angabe der Lieferanten</h2>
+    </ion-item>
+    <form [formGroup]="supplierForm">
+        <ion-list *ngIf="file != null">
+            <ion-item lines="none" *ngFor="let pe of file.templates; let i = index;">
+                <h3>{{pe.name}}</h3>
+                <ion-label class="label" position="stacked">Lieferant</ion-label>
+                <ion-item class="dropdown" lines="none">
+                    <ion-select interface="popover" class="dropdown activated" (ionChange)="dropdownFunction($event, i)"
+                        style="margin-bottom: 30px;">
+                        <ion-select-option class="dropdownOption" *ngFor="let entry of dropdownOptions"
+                            selected="id == dropdownDefault" value="{{entry.id}}">
+                            {{entry.val}}
+                        </ion-select-option>
+                    </ion-select>
+
+                </ion-item>
+                <ion-label class="label" position="stacked">Lieferanten-Artikelnummer</ion-label>
+                <ion-input class="inputField" type="text" formControlName="suplID" required
+                    [(ngModel)]="pe.supplItemID"></ion-input>
+
+                <ng-container *ngFor="let validation of validation_messages.supplier">
+                    <div *ngIf="supplierForm.get('suplID').hasError(validation.type) && (supplierForm.get('suplID').dirty || supplierForm.get('suplID').touched)"
+                        style="color: red;">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+            </ion-item>
+
+        </ion-list>
+        <ng-container>
+            <div *ngIf="!allSelected" style="color: red;">
+                <ion-text class="error_message">Bitte für jede Schablone einen Lieferanten angeben</ion-text>
+            </div>
+        </ng-container>
+        <ion-button (click)="setup()">Fertig</ion-button>
+
+    </form>
+</ion-content>

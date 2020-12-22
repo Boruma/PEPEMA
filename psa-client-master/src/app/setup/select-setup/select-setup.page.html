@@ -1,0 +1,25 @@
+<ion-content>
+  <div class="content">
+    <div class="columns">
+      <div class="leftColumn">
+        <form novalidate [formGroup]="setupForm">
+          <h2>Das System mit vorgefertigten Daten initialisieren</h2>
+
+          <ion-item class="dropdown">
+            <ion-select interface="popover" class="dropdown" (ionChange)="dropdownFunction($event)">
+              <ion-select-option class="dropdownOption" selected="selected">Auswählen</ion-select-option>
+              <ion-select-option class="dropdownOption" *ngFor="let entry of dropdownOptions" value="{{entry.val}}">
+                {{entry.val}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-button class="fileUpload primaryButtonText center">
+            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+            <ion-text>Datei auswählen</ion-text>
+            <input type="file" accept=".json" name="file" class="upload" (change)="fileSelected($event)">
+          </ion-button>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

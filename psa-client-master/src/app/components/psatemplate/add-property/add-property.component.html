@@ -1,0 +1,119 @@
+<form [formGroup]="psaForm">
+
+  <ion-card>
+    <div class="col-wrapper">
+      <h5 *ngIf="!is_ppe">Eigenschaft</h5>
+      <h5 *ngIf="is_ppe">{{name}}</h5>
+      <ion-item lines="none" class="dropdownFull" style="padding-bottom: 7px;" *ngIf="!is_ppe">
+        <ion-select interface="popover" class="dropdown activated" (ionChange)="showFormArray($event)">
+          <ion-select-option class="dropdownOption" selected="selected">
+            Option wählen
+          </ion-select-option>
+
+          <ion-select-option class="dropdownOption" value="intervall">
+            Intervall
+          </ion-select-option>
+
+          <ion-select-option class="dropdownOption" value="date">
+            Date
+          </ion-select-option>
+
+          <ion-select-option class="dropdownOption" value="counterAsc">
+            Zähler aufsteigend
+          </ion-select-option>
+
+          <ion-select-option class="dropdownOption" value="counterDesc">
+            Zähler absteigend
+          </ion-select-option>
+
+          <ion-select-option class="dropdownOption" value="value">
+            Einfacher Wert
+          </ion-select-option>
+
+          <ion-select-option class="dropdownOption" value="text">
+            Text
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-text class="error_message" *ngIf="option_error">Bitte eine Option auswählen<br></ion-text>
+
+      <span *ngIf="!is_ppe">
+        <ion-label class="label pe-template-label" position="stacked">Name:</ion-label>
+        <ion-input class="inputFieldFull" type="text" [(ngModel)]="name" formControlName="name"
+          placeholder="z.B. Waschungen" required>
+        </ion-input>
+        <ng-container *ngFor="let validation of validation_messages.name_property">
+          <div
+            *ngIf="psaForm.get('name').hasError(validation.type) && (psaForm.get('name').dirty || psaForm.get('name').touched)"
+            style="color: red;">
+            <ion-text class="error_message">{{ validation.message }}</ion-text>
+          </div>
+        </ng-container>
+      </span>
+
+      <div *ngIf="psaForm.controls.text.enabled == true && is_ppe">
+        <ion-label class="pe-template-label label" position="stacked">Text</ion-label>
+        <ion-input class="inputFieldFull" type="text" [(ngModel)]="text" formControlName="text"
+          placeholder="z.B. Waschungen">
+        </ion-input>
+      </div>
+      <ng-container *ngFor="let validation of validation_messages.text_property">
+        <div
+          *ngIf="psaForm.get('text').hasError(validation.type) && (psaForm.get('text').dirty || psaForm.get('text').touched)"
+          style="color: red;">
+          <ion-text class="error_message">{{ validation.message }}</ion-text>
+        </div>
+      </ng-container>
+
+      <div *ngIf="psaForm.controls.minValue.enabled == true">
+        <ion-label class="pe-template-label label" position="stacked">Minimaler Wert:
+        </ion-label>
+        <ion-input class="inputFieldFull" type="text" [(ngModel)]="minValue" formControlName="minValue"
+          placeholder="z.B. 0"></ion-input>
+      </div>
+      <ng-container *ngFor="let validation of validation_messages.minValue_property">
+        <div
+          *ngIf="psaForm.get('minValue').hasError(validation.type) && (psaForm.get('minValue').dirty || psaForm.get('minValue').touched)"
+          style="color: red;">
+          <ion-text class="error_message">{{ validation.message }}</ion-text>
+        </div>
+      </ng-container>
+
+      <div *ngIf="psaForm.controls.maxValue.enabled == true">
+        <ion-label class="pe-template-label label" position="stacked">Maximaler Wert:
+        </ion-label>
+        <ion-input class="inputFieldFull" type="text" [(ngModel)]="maxValue" formControlName="maxValue"
+          placeholder="z.B. 30">
+        </ion-input>
+      </div>
+      <ng-container *ngFor="let validation of validation_messages.maxValue_property">
+        <div
+          *ngIf="psaForm.get('maxValue').hasError(validation.type) && (psaForm.get('maxValue').dirty || psaForm.get('maxValue').touched)"
+          style="color: red;">
+          <ion-text class="error_message">{{ validation.message }}</ion-text>
+        </div>
+      </ng-container>
+
+      <div *ngIf="psaForm.controls.date.enabled == true  && is_ppe">
+        <ion-label class="pe-template-label label" position="stacked">Datum:</ion-label>
+        <ion-input class="inputFieldFull" type="date" [(ngModel)]="date" formControlName="date" placeholder="">
+        </ion-input>
+      </div>
+
+      <div *ngIf="psaForm.controls.intervall.enabled == true">
+        <ion-label class="pe-template-label label" position="stacked">Intervall:</ion-label>
+        <ion-input type="date" class="form-control" [(ngModel)]="intervall" formControlName="intervall" placeholder="">
+        </ion-input>
+      </div>
+      <ion-button class="primaryButtonIcon ion-float-right" (click)="removeProperty()">
+        <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+      </ion-button>
+    </div>
+
+
+    <ion-button type="button" class="primaryButtonIcon ion-float-right" (click)="addProperty()">
+      <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+      <ion-text>Eigenschaft hinzufügen</ion-text>
+    </ion-button>
+  </ion-card>
+</form>

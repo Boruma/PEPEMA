@@ -1,0 +1,25 @@
+.ppe ion-item {
+  width: 100%;
+}
+
+ion-item {
+  --padding-start: 2px;
+  --inner-padding-end: 2px;
+}
+
+.size ion-label {
+  display: inline-block;
+}
+
+.size ion-label:nth-child(2) {
+  margin-left: 5px;
+}
+
+.title {
+  font-size: 12pt;
+  margin-left: 10px;
+}
+
+.primaryButtonIcon {
+  margin: 0;
+}

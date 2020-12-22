@@ -1,0 +1,33 @@
+<div class="divFlowRoot showDesktopFlex">
+    <ion-button class="primaryButtonIcon ion-float-right" (click)="openAddWithState()" slot="end">
+        <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+        <ion-text>Neue Schablone</ion-text>
+    </ion-button>
+</div>
+
+<div class="searchDiv">
+    <ion-searchbar (ionChange)="onSearchTerm($event)" placeholder="Suchen..."></ion-searchbar>
+    <ion-button class="primaryButtonIcon">
+        <ion-icon src="../../../assets/icon/filter.svg"></ion-icon>
+    </ion-button>
+</div>
+
+<ion-list>
+    <ion-list-header>
+        <ion-select interface="popover" class="dropdown activated" (ionChange)="dropdownFunction($event)">
+            <ion-select-option class="dropdownOption" *ngFor="let entry of dropdownOptions"
+                selected="id == dropdownDefault" value="{{entry.id}}">
+                {{entry.val}}
+            </ion-select-option>
+        </ion-select>
+    </ion-list-header>
+    <ion-item *ngFor="let psa of templates; let i = index" [button]="true" (click)='updateDetails(psa)'
+        (click)="setListIndex(i)" class="showDesktop">
+        <ion-text [color]="(listIndex === i)  ? 'secondary' : 'primary'">{{psa.name}}</ion-text>
+    </ion-item>
+
+    <ion-item *ngFor="let psa of templates; let i = index" [button]="true" (click)='openDetailsWithState(psa)'
+        class="showMobile">
+        <ion-text [color]="(listIndex === i)  ? 'secondary' : 'primary'">{{psa.name}}</ion-text>
+    </ion-item>
+</ion-list>

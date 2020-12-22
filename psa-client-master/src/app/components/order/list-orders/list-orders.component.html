@@ -1,0 +1,162 @@
+<ion-row>
+    <ion-col>
+        <ion-button class="showDesktopFlex primaryButtonIcon ion-float-right" (click)="addOrder()">
+            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+            <ion-text>neue Bestellung</ion-text>
+        </ion-button>
+    </ion-col>
+</ion-row>
+
+
+<div class="searchDiv">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="onSearchTerm($event)" placeholder="Suchen...">
+    </ion-searchbar>
+    <ion-button class="primaryButtonIcon" (click)="presentModal()">
+        <ion-icon src="../../../assets/icon/filter.svg"></ion-icon>
+    </ion-button>
+</div>
+
+
+
+<span class="showMobile">
+    <ion-list>
+        <ion-item>
+            <h2>
+                Noch nicht bestellt
+            </h2>
+        </ion-item>
+
+        <ion-item *ngIf="notOrderedOrders.length == 0" lines="none">
+            <ion-label>
+                <h3>Keine neue Bestellliste vorhanden</h3>
+            </ion-label>
+        </ion-item>
+
+        <ion-item *ngFor="let order of notOrderedOrders; let i = index" [button]="true" (click)="showOrder(order)">
+            <ion-label>
+                <h3>Nr. {{order.order_ID}} bei {{order.supplier.name}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+            <h2>
+                Bestellt
+            </h2>
+        </ion-item>
+
+        <ion-item *ngIf="orderedOrders.length == 0" lines="none">
+            <ion-label>
+                <h3>Keine offenen Bestellungen vorhanden</h3>
+            </ion-label>
+        </ion-item>
+
+        <ion-item *ngFor="let order of orderedOrders; let i = index" [button]="true" (click)="showOrder(order)">
+            <ion-label>
+                <h3>Nr. {{order.order_ID}} bei {{order.supplier.name}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item lines="none">
+            <h2>
+                Geliefert
+            </h2>
+            <ion-button *ngIf="showDeliveredOrders" slot="end" class="primaryButtonIcon ion-float-right"
+                (click)="toggleShowDeliveredOrders()">
+                <ion-icon src="../../../assets/icon/arrowDown.svg"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="!showDeliveredOrders" slot="end" class="primaryButtonIcon ion-float-right"
+                (click)="toggleShowDeliveredOrders()">
+                <ion-icon src="../../../assets/icon/arrowLeft.svg"></ion-icon>
+            </ion-button>
+        </ion-item>
+        <ion-item *ngIf="deliveredOrders.length == 0" lines="none">
+            <ion-label>
+                <h3>Keine abgeschlossenen Bestellungen vorhanden</h3>
+            </ion-label>
+        </ion-item>
+        <ion-col *ngIf="showDeliveredOrders">
+            <ion-item *ngFor="let order of deliveredOrders; let i = index" [button]="true" (click)="showOrder(order)">
+                <ion-label>
+                    <h3>Nr. {{order.order_ID}} bei {{order.supplier.name}} - {{order.commitedDeliveryDate}}</h3>
+                </ion-label>
+            </ion-item>
+        </ion-col>
+
+    </ion-list>
+</span>
+<span class="showDesktop">
+    <ion-list>
+        <ion-item>
+            <h2>
+                Noch nicht bestellt
+            </h2>
+        </ion-item>
+
+        <ion-item *ngIf="notOrderedOrders.length == 0" lines="none">
+            <ion-label>
+                <h3>Keine neue Bestellliste vorhanden</h3>
+            </ion-label>
+        </ion-item>
+
+        <ion-item *ngFor="let order of notOrderedOrders; let i = index" [button]="true"
+            (click)="showOrderDesktop(order)">
+            <ion-label>
+                <h3>Nr. {{order.order_ID}} bei {{order.supplier.name}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item>
+            <h2>
+                Bestellt
+            </h2>
+        </ion-item>
+
+        <ion-item *ngIf="orderedOrders.length == 0" lines="none">
+            <ion-label>
+                <h3>Keine offenen Bestellungen vorhanden</h3>
+            </ion-label>
+        </ion-item>
+
+        <ion-item *ngFor="let order of orderedOrders; let i = index" [button]="true" (click)="showOrderDesktop(order)">
+            <ion-label>
+                <h3>Nr. {{order.order_ID}} bei {{order.supplier.name}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item lines="none">
+            <h2>
+                Geliefert
+            </h2>
+            <ion-button *ngIf="showDeliveredOrders" slot="end" class="primaryButtonIcon ion-float-right"
+                (click)="toggleShowDeliveredOrders()">
+                <ion-icon src="../../../assets/icon/arrowDown.svg"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="!showDeliveredOrders" slot="end" class="primaryButtonIcon ion-float-right"
+                (click)="toggleShowDeliveredOrders()">
+                <ion-icon src="../../../assets/icon/arrowLeft.svg"></ion-icon>
+            </ion-button>
+        </ion-item>
+        <ion-item *ngIf="showDeliveredOrders && deliveredOrders.length == 0" lines="none">
+            <ion-label>
+                <h3>Keine abgeschlossenen Bestellungen vorhanden</h3>
+            </ion-label>
+        </ion-item>
+        <ion-col *ngIf="showDeliveredOrders">
+            <ion-item *ngFor="let order of deliveredOrders; let i = index" [button]="true"
+                (click)="showOrderDesktop(order)">
+                <ion-label>
+                    <h3>Nr. {{order.order_ID}} bei {{order.supplier.name}} - {{order.commitedDeliveryDate}}</h3>
+                </ion-label>
+            </ion-item>
+        </ion-col>
+
+    </ion-list>
+</span>

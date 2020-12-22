@@ -1,0 +1,91 @@
+<form [formGroup]="createForm">
+    <ion-item lines="none">
+        <!-- name of supplier -->
+        <ion-label class="label" position="stacked">Name des Lieferanten*</ion-label>
+        <ion-input class="inputField" clearInput type="text" [(ngModel)]="supplier.name" formControlName="name"
+            name="name" placeholder="Lieferant"></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.name">
+                <div
+                    *ngIf="createForm.get('name').hasError(validation.type) && (createForm.get('name').dirty || createForm.get('name').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+        <ion-label class="label" position="stacked">E-Mail des Lieferanten*</ion-label>
+        <ion-input class="inputField" clearInput type="text" [(ngModel)]="supplier.email" formControlName="email"
+            name="email" placeholder=""></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.email">
+                <div
+                    *ngIf="createForm.get('email').hasError(validation.type) && (createForm.get('email').dirty || createForm.get('email').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-label class="label" position="stacked">Straße*</ion-label>
+        <ion-input class="inputField" [(ngModel)]="supplier.address.street" formControlName="street"></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.street">
+                <div
+                    *ngIf="createForm.get('street').hasError(validation.type) && (createForm.get('street').dirty || createForm.get('street').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-label class="label" position="stacked">Hausnummer*</ion-label>
+        <ion-input class="inputField" [(ngModel)]="supplier.address.housenumber" formControlName="housenumber">
+        </ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.housenumber">
+                <div
+                    *ngIf="createForm.get('housenumber').hasError(validation.type) && (createForm.get('housenumber').dirty || createForm.get('housenumber').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-label class="label" position="stacked">PLZ*</ion-label>
+        <ion-input class="inputField" [(ngModel)]="supplier.address.postcode" formControlName="postcode">
+        </ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.postcode">
+                <div
+                    *ngIf="createForm.get('postcode').hasError(validation.type) && (createForm.get('postcode').dirty || createForm.get('postcode').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-label class="label" position="stacked">Ort*</ion-label>
+        <ion-input class="inputField" [(ngModel)]="supplier.address.place" formControlName="place"></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.place">
+                <div
+                    *ngIf="createForm.get('place').hasError(validation.type) && (createForm.get('place').dirty || createForm.get('place').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-label class="label" position="stacked">Adresszusatz</ion-label>
+        <ion-input class="inputField" [(ngModel)]="supplier.address.address_additional"
+            formControlName="address_additional">
+        </ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.address_additional">
+                <div
+                    *ngIf="createForm.get('address_additional').hasError(validation.type) && (createForm.get('address_additional').dirty || createForm.get('address_additional').touched)">
+                    <ion-text class="error_message"> {{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+    </ion-item>
+    <ion-button full [disabled]="(createForm.invalid) && attemptedSubmit" color="primary" class="primaryButtonIcon"
+        type="submit" (click)="createSupplier()">
+        <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+        <ion-text>Erstellen</ion-text>
+    </ion-button>
+</form>

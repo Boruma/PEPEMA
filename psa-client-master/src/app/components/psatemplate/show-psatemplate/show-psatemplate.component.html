@@ -1,0 +1,131 @@
+<ion-row class="ion-align-items-center showDesktop" *ngIf="Pe != null">
+  <ion-col size="8">
+    <ion-item lines="none">
+      <ion-label class="detailName" text-wrap>{{Pe.name}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col size="4">
+    <ion-button class="primaryButtonIcon ion-float-right" (click)="openUpdateWithState(Pe)">
+      <ion-icon src="../../../assets/icon/edit.svg"></ion-icon>
+    </ion-button>
+    <ion-button class="primaryButtonIcon ion-float-right" (click)="presentAlertConfirm(Pe)">
+      <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-row>
+
+
+<span *ngIf="Pe != null && Pe.properties!=null">
+
+  <ion-item>
+    <ion-label color="primary"><b>Eigenschaften</b></ion-label>
+  </ion-item>
+  <ion-list *ngIf="Pe.properties[0]!=null">
+
+    <span *ngFor="let property of Pe.properties">
+
+      <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-label>{{property.name}}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="property.text">
+        <ion-label>
+          Text:
+        </ion-label>
+        <ion-label>
+          {{property.text}}
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="property.minValue">
+        <ion-label>
+          Minimaler Wert:
+        </ion-label>
+        <ion-label>
+          {{property.minValue}}
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="property.maxValue">
+        <ion-label>
+          Maximaler Wert:
+        </ion-label>
+        <ion-label>{{property.maxValue}}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="property.counter">
+        <ion-label>
+          Counter:
+        </ion-label>
+        <ion-label>{{property.counter}}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="property.date">
+        <ion-label>
+          Datum
+        </ion-label>
+        <ion-label>{{property.date}}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="property.intervall">
+        <ion-label>
+          Intervall:
+        </ion-label>
+        <ion-label>{{property.intervall}}</ion-label>
+      </ion-item>
+
+    </span>
+    <ion-item *ngIf="Pe.properties[0]==null">
+      <ion-label>Keine Eigenschaften zugeordnet</ion-label>
+    </ion-item>
+  </ion-list>
+</span>
+<ion-list *ngIf="Pe.size_ranges != null">
+  <ion-item>
+    <ion-label color="primary"><b>Größen</b></ion-label>
+  </ion-item>
+  <span *ngFor="let sizerange of Pe.size_ranges">
+    <ion-item>
+      <ion-label>
+        Name:
+      </ion-label>
+      <ion-label>{{sizerange.name}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Größen:</ion-label>
+      <ion-label *ngFor="let size of sizerange.sizes">
+        {{size.name}}
+      </ion-label>
+    </ion-item>
+  </span>
+</ion-list>
+
+<ion-list *ngIf="Pe.roles != null">
+  <ion-item>
+    <ion-label color="primary"><b>Zugeordnete Rollen</b></ion-label>
+  </ion-item>
+  <div *ngIf="Pe.roles[0]!=null">
+    <ion-item *ngFor="let role of Pe.roles" lines="none">
+
+      <ion-label>
+        {{role.name}}
+      </ion-label>
+
+    </ion-item>
+  </div>
+  <div *ngIf="Pe.roles[0]==null">
+    <ion-item>Keine Eigenschaften zugeordnet</ion-item>
+  </div>
+</ion-list>
+
+
+<ion-list>
+  <ion-item>
+    <ion-label color="primary"><b>Lieferant</b></ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Name:</ion-label>
+    <ion-label *ngIf="Pe.supplier!=null">{{Pe.supplier.name}}</ion-label>
+    <ion-label *ngIf="Pe.supplier==null">Kein Lieferant zugeordnet</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Lieferantenartikelnummer:</ion-label>
+    <ion-label *ngIf="Pe.supplItemID!=null">{{Pe.supplItemID}}</ion-label>
+    <ion-label *ngIf="Pe.supplItemID==null">Keine Lieferantenartikelnummer zugeordnet</ion-label>
+  </ion-item>
+</ion-list>

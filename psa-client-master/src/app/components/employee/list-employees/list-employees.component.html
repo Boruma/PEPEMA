@@ -1,0 +1,47 @@
+<!-- Liste Mitarbeiter - Appansicht -->
+
+
+<ion-row class="showDesktopFlex">
+    <ion-col>
+        <ion-button class="primaryButtonIcon ion-float-right" (click)="addEmployee()">
+            <ion-icon src="../../../assets/icon/addPerson.svg"></ion-icon>
+            <ion-text>neue Person</ion-text>
+        </ion-button>
+    </ion-col>
+</ion-row>
+
+<div class="searchDiv">
+    <ion-searchbar [(ngModel)]="searchTerm" placeholder="Suchen..." (ionChange)="setFilteredEmployees()">
+    </ion-searchbar>
+</div>
+
+<ion-list>
+    <ion-list-header>
+        <ion-select interface="popover" class="dropdown activated" (ionChange)="dropdownFunction($event)">
+            <ion-select-option class="dropdownOption" *ngFor="let entry of dropdownOptions"
+                selected="id == dropdownDefault" value="{{entry.id}}">
+                {{entry.val}}
+            </ion-select-option>
+        </ion-select>
+    </ion-list-header>
+    <ion-item [button]="true" *ngFor="let employee of filterdEmployees; let i = index"
+        (click)="showEmployeeDesktop(employee)" class="showDesktop">
+
+        <ion-text [color]="(listIndex === i)  ? 'secondary' : 'primary'">
+            {{employee.name}}
+        </ion-text>
+    </ion-item>
+    <ion-item [button]="true" *ngFor="let employee of filterdEmployees; let i = index" (click)="showEmployee(employee)"
+        class="showMobile">
+
+        <ion-text [color]="(listIndex === i)  ? 'secondary' : 'primary'">
+            {{employee.name}}
+        </ion-text>
+
+    </ion-item>
+</ion-list>
+
+
+<ion-text *ngIf="listIsEmpty">
+    Keine Personen enthalten.
+</ion-text>

@@ -1,0 +1,59 @@
+<ion-row class="showDesktopFlex">
+    <ion-col>
+        <ion-button class="primaryButtonIcon ion-float-left" (click)="scanPsa()">
+            <ion-icon src="../../../assets/icon/barcode.svg"></ion-icon>
+            <ion-text>Scan PSA</ion-text>
+        </ion-button>
+    </ion-col>
+    <ion-col>
+        <ion-button class="primaryButtonIcon ion-float-right" (click)="addPsa()">
+            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+            <ion-text>neue PSA</ion-text>
+        </ion-button>
+    </ion-col>
+</ion-row>
+<div class="searchDiv">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="onSearchTerm($event)" placeholder="Suchen..."></ion-searchbar>
+    <ion-button class="primaryButtonIcon" (click)="presentModal()">
+        <ion-icon src="../../../assets/icon/filter.svg"></ion-icon>
+    </ion-button>
+</div>
+
+<ion-list>
+    <ion-list-header>
+        <ion-select interface="popover" class="dropdown activated" (ionChange)="dropdownFunction($event)">
+            <ion-select-option class="dropdownOption" *ngFor="let entry of dropdownOptions"
+                selected="id == dropdownDefault" value="{{entry.id}}">
+                {{entry.val}}
+            </ion-select-option>
+        </ion-select>
+    </ion-list-header>
+    <div *ngFor="let ppe of ppes; index as i" class="showDesktop">
+        <ion-item (click)="showPpeDetailsDesktop(i)" button="true">
+            <ion-row>
+                <ion-col size="12">
+                    <ion-text [color]="(listIndex === i)  ? 'secondary' : 'primary'" *ngIf="ppe.pe != null">
+                        {{ppe.pe.name}}
+                    </ion-text>
+                </ion-col>
+                <ion-col size="12"><span *ngFor="let range of ppe.size_ranges; index as i">{{range.sizes[0].name}}<span
+                            *ngIf="i < (ppe.size_ranges.length-1)">, </span></span>
+                </ion-col>
+            </ion-row>
+
+        </ion-item>
+    </div>
+    <div *ngFor="let ppe of ppes; index as i" class="showMobile">
+        <ion-item (click)="showPpeDetails(i)" button="true">
+            <ion-row>
+                <ion-col size="12">
+                    <ion-text [color]="(listIndex === i)  ? 'secondary' : 'primary'" *ngIf="ppe.pe != null">
+                        {{ppe.pe.name}}
+                    </ion-text>
+                </ion-col>
+                <ion-col size="12"><span *ngFor="let range of ppe.size_ranges">{{range.sizes[0].name}}, </span>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </div>
+</ion-list>

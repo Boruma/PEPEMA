@@ -1,0 +1,50 @@
+<!-- List Supplier -->
+<ion-row class="ion-align-items-center showDesktopFlex">
+    <ion-col>
+        <ion-button class="primaryButtonIcon ion-float-right" (click)="addSupplier()">
+            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+            <ion-text>Neuer Lieferant</ion-text>
+        </ion-button>
+    </ion-col>
+</ion-row>
+
+<div class="searchDiv">
+    <ion-searchbar (ionChange)="onSearchTerm($event)" placeholder="Suchen..."></ion-searchbar>
+    <ion-button class="primaryButtonIcon">
+        <ion-icon src="../../../assets/icon/filter.svg"></ion-icon>
+    </ion-button>
+</div>
+
+<ion-list>
+    <ion-list-header>
+        <ion-select interface="popover" class="dropdown activated">
+            <ion-select-option selected="selected" class="dropdownOption">
+                Sortieren
+            </ion-select-option>
+            <ion-select-option class="dropdownOption">
+                A-Z
+            </ion-select-option>
+            <ion-select-option class="dropdownOption">
+                Z-A
+            </ion-select-option>
+        </ion-select>
+    </ion-list-header>
+    <ion-item *ngFor="let supplier of suppliers; let i = index" button="true" (click)="showSupplierDesktop(supplier)"
+        (click)="setListIndex(i)" class="showDesktop">
+
+        <ion-label [color]="(listIndex === i)  ? 'secondary' : 'primary'">
+            {{supplier.name}}
+        </ion-label>
+
+    </ion-item>
+
+    <ion-item *ngFor="let supplier of suppliers; let i = index" button="true" (click)="showSupplier(supplier)"
+        (click)="setListIndex(i)" class="showMobile">
+        <ion-label [color]="(listIndex === i)  ? 'secondary' : 'primary'">
+            {{supplier.name}}
+        </ion-label>
+    </ion-item>
+</ion-list>
+<ion-button *ngIf="setup" class="primaryButtonIcon" (click)="finishSetup()">
+    <ion-text>Setup fortsetzen</ion-text>
+</ion-button>

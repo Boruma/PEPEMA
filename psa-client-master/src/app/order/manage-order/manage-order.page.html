@@ -1,0 +1,22 @@
+<ion-content>
+    <ion-fab class="showMobile actionButton" vertical="bottom" horizontal="end" slot="fixed" edge
+        (click)="addOrder()">
+        <ion-fab-button class="primaryButtonIcon">
+            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-grid>
+        <ion-row>
+            <ion-col size-sm="12" size-md="12" size-lg="6" class="pageCol">
+
+                <app-list-orders></app-list-orders>
+            </ion-col>
+            <ion-col size-sm="12" size-md="12" size-lg="6" class="showDesktop">
+                <ion-card [ngClass]="{'hidden' : show == false}">
+                    <app-show-order></app-show-order>
+                </ion-card>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+</ion-content>

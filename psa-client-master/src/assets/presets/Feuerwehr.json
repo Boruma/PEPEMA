@@ -1,0 +1,736 @@
+{
+    "roles": [
+        {
+            "Role_ID": 1,
+            "name": "Feuerwehrmann/-frau"
+        },
+        {
+            "Role_ID": 2,
+            "name": "Atemschutzgeräteträger/in"
+        },
+        {
+            "Role_ID": 3,
+            "name": "Chemikalienschutzanzug-Träger/in"
+        }
+    ],
+    "templates": [
+        {
+            "pe_ID": 1,
+            "name": "Einsatzhose",
+            "supplier": {
+                "supplier_ID": 1,
+                "name": "",
+                "email": "",
+                "addresses": [
+                    {
+                        "place": "",
+                        "street": "",
+                        "housenumber": "",
+                        "postcode": "",
+                        "address_additional": ""
+                    }
+                ]
+            },
+            "roles": [
+                {
+                    "Role_ID": 1,
+                    "name": "Feuerwehrmann/-frau"
+                }
+            ],
+            "properties": [
+                {
+                    "property_ID": 1,
+                    "name": "Waschen",
+                    "text": "",
+                    "minValue": 0,
+                    "maxValue": 30,
+                    "counter": 0,
+                    "date": null,
+                    "intervall": null,
+                    "type": "upValueRange",
+                    "created_at": null,
+                    "updated_at": null
+                }
+            ],
+            "size_ranges": [
+                {
+                    "sizer_ID": 1,
+                    "name": "Einsatzhose Größe 1",
+                    "sizes": [
+                        {
+                            "name": "50-52",
+                            "size_ID": 1,
+                            "sizer_ID": 1
+                        },
+                        {
+                            "name": "54-56",
+                            "size_ID": 2,
+                            "sizer_ID": 1
+                        },
+                        {
+                            "name": "58-60",
+                            "size_ID": 3,
+                            "sizer_ID": 1
+                        },
+                        {
+                            "name": "62-64",
+                            "size_ID": 4,
+                            "sizer_ID": 1
+                        },
+                        {
+                            "name": "66-68",
+                            "size_ID": 5,
+                            "sizer_ID": 1
+                        },
+                        {
+                            "name": "68-70",
+                            "size_ID": 6,
+                            "sizer_ID": 1
+                        }
+                    ]
+                },
+                {
+                    "sizer_ID": 2,
+                    "name": "Einsatzhose Größe 2",
+                    "sizes": [
+                        {
+                            "name": "S",
+                            "size_ID": 1,
+                            "sizer_ID": 2
+                        },
+                        {
+                            "name": "M",
+                            "size_ID": 2,
+                            "sizer_ID": 2
+                        },
+                        {
+                            "name": "L",
+                            "size_ID": 3,
+                            "sizer_ID": 2
+                        },
+                        {
+                            "name": "XL",
+                            "size_ID": 4,
+                            "sizer_ID": 2
+                        },
+                        {
+                            "name": "2XL",
+                            "size_ID": 5,
+                            "sizer_ID": 2
+                        },
+                        {
+                            "name": "3XL",
+                            "size_ID": 6,
+                            "sizer_ID": 2
+                        }
+                    ]
+                },
+                {
+                    "sizer_ID": 3,
+                    "name": "Einsatzhose Größe 3",
+                    "sizes": [
+                        {
+                            "name": "Short",
+                            "size_ID": 1,
+                            "sizer_ID": 3
+                        },
+                        {
+                            "name": "Regular",
+                            "size_ID": 2,
+                            "sizer_ID": 3
+                        },
+                        {
+                            "name": "Long",
+                            "size_ID": 3,
+                            "sizer_ID": 3
+                        },
+                        {
+                            "name": "XXLong",
+                            "size_ID": 4,
+                            "sizer_ID": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "pe_ID": 2,
+            "name": "Einsatzjacke",
+            "supplier": {
+                "supplier_ID": 1,
+                "name": "",
+                "email": "",
+                "addresses": [
+                    {
+                        "place": "",
+                        "street": "",
+                        "housenumber": "",
+                        "postcode": "",
+                        "address_additional": ""
+                    }
+                ]
+            },
+            "roles": [
+                {
+                    "Role_ID": 1,
+                    "name": "Feuerwehrmann/-frau"
+                }
+            ],
+            "properties": [
+                {
+                    "property_ID": 1,
+                    "name": "Waschen",
+                    "text": "",
+                    "minValue": 0,
+                    "maxValue": 30,
+                    "counter": 0,
+                    "date": null,
+                    "intervall": null,
+                    "type": "upValueRange",
+                    "created_at": null,
+                    "updated_at": null
+                }
+            ],
+            "size_ranges": [
+                {
+                    "sizer_ID": 4,
+                    "name": "Einsatzjacke Größe 1",
+                    "sizes": [
+                        {
+                            "name": "50-52",
+                            "size_ID": 1,
+                            "sizer_ID": 4
+                        },
+                        {
+                            "name": "54-56",
+                            "size_ID": 2,
+                            "sizer_ID": 4
+                        },
+                        {
+                            "name": "58-60",
+                            "size_ID": 3,
+                            "sizer_ID": 4
+                        },
+                        {
+                            "name": "62-64",
+                            "size_ID": 4,
+                            "sizer_ID": 4
+                        },
+                        {
+                            "name": "66-68",
+                            "size_ID": 5,
+                            "sizer_ID": 4
+                        },
+                        {
+                            "name": "68-70",
+                            "size_ID": 6,
+                            "sizer_ID": 4
+                        }
+                    ]
+                },
+                {
+                    "sizer_ID": 5,
+                    "name": "Einsatzjacke Größe 2",
+                    "sizes": [
+                        {
+                            "name": "S",
+                            "size_ID": 1,
+                            "sizer_ID": 5
+                        },
+                        {
+                            "name": "M",
+                            "size_ID": 2,
+                            "sizer_ID": 5
+                        },
+                        {
+                            "name": "L",
+                            "size_ID": 3,
+                            "sizer_ID": 5
+                        },
+                        {
+                            "name": "XL",
+                            "size_ID": 4,
+                            "sizer_ID": 5
+                        },
+                        {
+                            "name": "2XL",
+                            "size_ID": 5,
+                            "sizer_ID": 5
+                        },
+                        {
+                            "name": "3XL",
+                            "size_ID": 6,
+                            "sizer_ID": 5
+                        }
+                    ]
+                },
+                {
+                    "sizer_ID": 6,
+                    "name": "Einsatzjacke Größe 3",
+                    "sizes": [
+                        {
+                            "name": "Short",
+                            "size_ID": 1,
+                            "sizer_ID": 6
+                        },
+                        {
+                            "name": "Regular",
+                            "size_ID": 2,
+                            "sizer_ID": 6
+                        },
+                        {
+                            "name": "Long",
+                            "size_ID": 3,
+                            "sizer_ID": 6
+                        },
+                        {
+                            "name": "XXLong",
+                            "size_ID": 4,
+                            "sizer_ID": 6
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "pe_ID": 3,
+            "name": "Schuhe",
+            "supplier": {
+                "supplier_ID": 1,
+                "name": "",
+                "email": "",
+                "addresses": [
+                    {
+                        "place": "",
+                        "street": "",
+                        "housenumber": "",
+                        "postcode": "",
+                        "address_additional": ""
+                    }
+                ]
+            },
+            "roles": [
+                {
+                    "Role_ID": 1,
+                    "name": "Feuerwehrmann/-frau"
+                }
+            ],
+            "properties": [],
+            "size_ranges": [
+                {
+                    "sizer_ID": 7,
+                    "name": "Schuhgröße",
+                    "sizes": [
+                        {
+                            "name": "34",
+                            "size_ID": 1,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "35",
+                            "size_ID": 2,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "36",
+                            "size_ID": 3,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "37",
+                            "size_ID": 4,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "38",
+                            "size_ID": 5,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "39",
+                            "size_ID": 6,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "40",
+                            "size_ID": 7,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "41",
+                            "size_ID": 8,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "42",
+                            "size_ID": 9,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "43",
+                            "size_ID": 10,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "44",
+                            "size_ID": 11,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "45",
+                            "size_ID": 12,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "46",
+                            "size_ID": 13,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "47",
+                            "size_ID": 14,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "48",
+                            "size_ID": 15,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "49",
+                            "size_ID": 16,
+                            "sizer_ID": 7
+                        },
+                        {
+                            "name": "50",
+                            "size_ID": 17,
+                            "sizer_ID": 7
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "pe_ID": 4,
+            "name": "Handschuhe",
+            "supplier": {
+                "supplier_ID": 1,
+                "name": "",
+                "email": "",
+                "addresses": [
+                    {
+                        "place": "",
+                        "street": "",
+                        "housenumber": "",
+                        "postcode": "",
+                        "address_additional": ""
+                    }
+                ]
+            },
+            "roles": [
+                {
+                    "Role_ID": 1,
+                    "name": "Feuerwehrmann/-frau"
+                }
+            ],
+            "properties": [],
+            "size_ranges": [
+                {
+                    "sizer_ID": 8,
+                    "name": "Handschuhgröße",
+                    "sizes": [
+                        {
+                            "name": "8",
+                            "size_ID": 1,
+                            "sizer_ID": 8
+                        },
+                        {
+                            "name": "9",
+                            "size_ID": 2,
+                            "sizer_ID": 8
+                        },
+                        {
+                            "name": "10",
+                            "size_ID": 3,
+                            "sizer_ID": 8
+                        },
+                        {
+                            "name": "11",
+                            "size_ID": 4,
+                            "sizer_ID": 8
+                        },
+                        {
+                            "name": "12",
+                            "size_ID": 5,
+                            "sizer_ID": 8
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "pe_ID": 5,
+            "name": "Handschuhe TH",
+            "supplier": {
+                "supplier_ID": 1,
+                "name": "",
+                "email": "",
+                "addresses": [
+                    {
+                        "place": "",
+                        "street": "",
+                        "housenumber": "",
+                        "postcode": "",
+                        "address_additional": ""
+                    }
+                ]
+            },
+            "roles": [
+                {
+                    "Role_ID": 1,
+                    "name": "Feuerwehrmann/-frau"
+                }
+            ],
+            "properties": [],
+            "size_ranges": [
+                {
+                    "sizer_ID": 9,
+                    "name": "Handschuhgröße TH",
+                    "sizes": [
+                        {
+                            "name": "9",
+                            "size_ID": 2,
+                            "sizer_ID": 9
+                        },
+                        {
+                            "name": "10",
+                            "size_ID": 3,
+                            "sizer_ID": 9
+                        },
+                        {
+                            "name": "11",
+                            "size_ID": 4,
+                            "sizer_ID": 9
+                        },
+                        {
+                            "name": "12",
+                            "size_ID": 5,
+                            "sizer_ID": 9
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "pe_ID": 6,
+            "name": "Helm",
+            "supplier": {
+                "supplier_ID": 1,
+                "name": "",
+                "email": "",
+                "addresses": [
+                    {
+                        "place": "",
+                        "street": "",
+                        "housenumber": "",
+                        "postcode": "",
+                        "address_additional": ""
+                    }
+                ]
+            },
+            "roles": [
+                {
+                    "Role_ID": 1,
+                    "name": "Feuerwehrmann/-frau"
+                }
+            ],
+            "properties": [],
+            "size_ranges": [
+                {
+                    "sizer_ID": 10,
+                    "name": "Helmgröße",
+                    "sizes": [
+                        {
+                            "name": "50-52",
+                            "size_ID": 1,
+                            "sizer_ID": 10
+                        },
+                        {
+                            "name": "54-56",
+                            "size_ID": 2,
+                            "sizer_ID": 10
+                        },
+                        {
+                            "name": "58-60",
+                            "size_ID": 3,
+                            "sizer_ID": 10
+                        },
+                        {
+                            "name": "62-64",
+                            "size_ID": 4,
+                            "sizer_ID": 10
+                        },
+                        {
+                            "name": "66-68",
+                            "size_ID": 5,
+                            "sizer_ID": 10
+                        },
+                        {
+                            "name": "68-70",
+                            "size_ID": 6,
+                            "sizer_ID": 10
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "pe_ID": 7,
+            "name": "Stiefel",
+            "supplier": {
+                "supplier_ID": 1,
+                "name": "",
+                "email": "",
+                "addresses": [
+                    {
+                        "place": "",
+                        "street": "",
+                        "housenumber": "",
+                        "postcode": "",
+                        "address_additional": ""
+                    }
+                ]
+            },
+            "roles": [
+                {
+                    "Role_ID": 1,
+                    "name": "Feuerwehrmann/-frau"
+                }
+            ],
+            "properties": [],
+            "size_ranges": [
+                {
+                    "sizer_ID": 11,
+                    "name": "Stiefelgröße",
+                    "sizes": [
+                        {
+                            "name": "34",
+                            "size_ID": 1,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "35",
+                            "size_ID": 2,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "36",
+                            "size_ID": 3,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "37",
+                            "size_ID": 4,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "38",
+                            "size_ID": 5,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "39",
+                            "size_ID": 6,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "40",
+                            "size_ID": 7,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "41",
+                            "size_ID": 8,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "42",
+                            "size_ID": 9,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "43",
+                            "size_ID": 10,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "44",
+                            "size_ID": 11,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "45",
+                            "size_ID": 12,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "46",
+                            "size_ID": 13,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "47",
+                            "size_ID": 14,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "48",
+                            "size_ID": 15,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "49",
+                            "size_ID": 16,
+                            "sizer_ID": 11
+                        },
+                        {
+                            "name": "50",
+                            "size_ID": 17,
+                            "sizer_ID": 11
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "pe_ID": 8,
+            "name": "Sprechergarnitur",
+            "supplier": {
+                "supplier_ID": 1,
+                "name": "",
+                "email": "",
+                "addresses": [
+                    {
+                        "place": "",
+                        "street": "",
+                        "housenumber": "",
+                        "postcode": "",
+                        "address_additional": ""
+                    }
+                ]
+            },
+            "roles": [
+                {
+                    "Role_ID": 2,
+                    "name": "Atemschutzgeräteträger/in"
+                },
+                {
+                    "Role_ID": 3,
+                    "name": "Chemikalienschutzanzug-Träger/in"
+                }
+            ],
+            "properties": [],
+            "size_ranges": []
+        }
+    ]
+}

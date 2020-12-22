@@ -1,0 +1,46 @@
+<!-- <form [formGroup]="createForm">
+    <ion-item lines="none">
+        <!-- name of role 
+        <ion-label class="label" position="stacked">Name der Rolle/-in*</ion-label>
+        <ion-input class="inputField" clearInput type="text" [(ngModel)]="role.name" formControlName="name" name="name"
+            placeholder="Rolle"></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.name">
+                <div
+                    *ngIf="createForm.get('name').hasError(validation.type) && (createForm.get('name').dirty || createForm.get('name').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+    </ion-item>
+
+    <ion-button [disabled]="(createForm.invalid) && attemptedSubmit" full class="primaryButtonText" color="primary"
+        type="submit" full (click)="createRole()">
+        <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+        <ion-text>Hinzufügen</ion-text> -->
+
+
+    <form [formGroup]="createForm">
+        <ion-item lines="none">
+            <!-- name of role -->
+            <ion-label class="label" position="stacked">Name der Rolle/-in*</ion-label>
+            <ion-input class="inputField" clearInput type="text" [(ngModel)]="role.name" formControlName="name" name="name"
+                       placeholder="Rolle"></ion-input>
+            <div>
+                <ng-container *ngFor="let validation of validation_messages.name">
+                    <div
+                            *ngIf="createForm.get('name').hasError(validation.type) && (createForm.get('name').dirty || createForm.get('name').touched)">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+                <ion-text class="error_message" *ngIf="roleExists">Diese Rolle existiert bereits</ion-text>
+            </div>
+        </ion-item>
+
+        <ion-button [disabled]="(createForm.invalid) && attemptedSubmit" full class="primaryButtonText" color="primary"
+                    type="submit" full (click)="createRole()">
+            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+            <ion-text>Hinzufügen</ion-text>
+    
+        </ion-button>
+    </form>

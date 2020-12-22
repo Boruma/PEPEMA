@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-fab class="showMobile actionButton" vertical="bottom" horizontal="end" slot="fixed" edge>
+    <ion-fab-button class="primaryButtonIcon">
+      <ion-icon src="../../../assets/icon/edit.svg"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="updatePsa()">
+        <ion-icon src="../../../assets/icon/edit.svg"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="deletePsa()">
+        <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+
+  </ion-fab>
+  <app-show-psa></app-show-psa>
+</ion-content>

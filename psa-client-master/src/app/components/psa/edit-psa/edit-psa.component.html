@@ -1,0 +1,115 @@
+<form [formGroup]="psaForm" id="psa-form-2" *ngIf="ppe != null && ppe.pe != null">
+    <ion-item lines="none" *ngIf="ppe.pe != null">
+        <div *ngFor="let range of ppe.pe.size_ranges; index as i">
+
+            <ion-item lines="none" class="dropdown" *ngIf="ppe.pe.size_ranges != null">
+                <ion-label class="label" position="stacked">{{range.name}}</ion-label>
+                <ion-select interface="popover" class="dropdown" (ionChange)="addSizeToPsa($event)"
+                    id="{{range.sizer_ID}}">
+                    <ion-select-option class="dropdownOption" *ngFor="let size of ppe.pe.size_ranges[i].sizes"
+                        [selected]="size.name == ppe.size_ranges[i].sizes[0].name" value="{{size.name}}">
+                        {{size.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+        </div>
+
+        <ion-label class="label" position="stacked">Status</ion-label>
+        <ion-input class="inputField" clearInput type="text" [(ngModel)]="ppe.state" formControlName="state"
+            name="state" placeholder="Status">
+        </ion-input>
+        <ng-container *ngFor="let validation of validation_messages.state">
+            <div
+                *ngIf="psaForm.get('state').hasError(validation.type) && (psaForm.get('state').dirty || psaForm.get('state').touched)">
+                <ion-text class="error_message">{{ validation.message }}</ion-text>
+            </div>
+        </ng-container>
+
+        <ion-label class="label" position="stacked">Kommentar</ion-label>
+        <ion-input class="inputField" clearInput type="text" [(ngModel)]="ppe.comment" formControlName="comment"
+            name="comment" placeholder="Ein Kommentar..."></ion-input>
+        <ng-container *ngFor="let validation of validation_messages.comment">
+            <div
+                *ngIf="psaForm.get('comment').hasError(validation.type) && (psaForm.get('comment').dirty || psaForm.get('comment').touched)">
+                <ion-text class="error_message">{{ validation.message }}</ion-text>
+            </div>
+        </ng-container>
+
+        <ion-label class="label" position="stacked">Datum der Aushändigung</ion-label>
+        <ion-input class="inputField" type="date" [(ngModel)]="ppe.commissioningdate" formControlName="commissiondate"
+            name="commissiondate"></ion-input>
+    </ion-item>
+    <ion-grid class="showMobile">
+        <ion-row formArrayName="properties">
+            <ion-col size="4" *ngFor="let property of ppe.properties; index as i">
+                <ion-card class="property_card" [button]="true" (click)="addPropertyMobile(true, property, i)">
+                    <ion-label>{{ppe.properties[i].name}}</ion-label>
+                </ion-card>
+            </ion-col>
+
+
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="ion-no-padding" *ngIf="ppe.properties != null" class="showDesktop">
+        <ion-row class="ion-no-padding" formArrayName="properties">
+
+            <ion-col *ngFor="let property of ppe.properties; index as i" size-sm="12" size-md="6" size-lg="3">
+                <ion-card>
+                    <ion-item>
+                        <h3>{{ppe.properties[i].name}}</h3>
+                    </ion-item>
+                    <ion-item *ngIf="ppe.properties[i].type=='upValueRange'">
+                        <ion-label class="label" position="stacked">Minimaler Wert</ion-label>
+                        <ion-input class="inputFieldFull" min="0" type="number" [(ngModel)]="ppe.properties[i].minValue"
+                            [ngModelOptions]="{standalone: true}" placeholder="Aktueller Wert"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ppe.properties[i].type=='value'">
+                        <ion-label class="label" position="stacked">Minimaler Wert</ion-label>
+                        <ion-input class="inputFieldFull" min="0" type="number" [(ngModel)]="ppe.properties[i].minValue"
+                            [ngModelOptions]="{standalone: true}" placeholder="Wert"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ppe.properties[i].type=='downValueRange'">
+                        <ion-label class="label" position="stacked">Minimaler Wert</ion-label>
+                        <ion-input class="inputFieldFull" min="0" type="number" [(ngModel)]="ppe.properties[i].minValue"
+                            [ngModelOptions]="{standalone: true}" placeholder="Minimaler Wert"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ppe.properties[i].type=='upValueRange'">
+                        <ion-label class="label" position="stacked">Maximaler Wert</ion-label>
+                        <ion-input class="inputFieldFull" min="0" type="number" [(ngModel)]="ppe.properties[i].maxValue"
+                            [ngModelOptions]="{standalone: true}" placeholder="Maximaler Wert"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ppe.properties[i].type=='downValueRange'">
+                        <ion-label class="label" position="stacked">Maximaler Wert</ion-label>
+                        <ion-input class="inputFieldFull" min="0" type="number" [(ngModel)]="ppe.properties[i].maxValue"
+                            [ngModelOptions]="{standalone: true}" placeholder="Aktueller Wert"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ppe.properties[i].type=='date'">
+                        <ion-label class="label" position="stacked">Datum</ion-label>
+                        <ion-input class="inputFieldFull" type="date" [(ngModel)]="ppe.properties[i].date"
+                            [ngModelOptions]="{standalone: true}" placeholder="Datum">
+                        </ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ppe.properties[i].type=='text'">
+                        <ion-label class="label" position="stacked">Text</ion-label>
+                        <ion-input class="inputFieldFull" maxlength="200" type="text"
+                            [(ngModel)]="ppe.properties[i].text" [ngModelOptions]="{standalone: true}"
+                            placeholder="Text">
+                        </ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ppe.properties[i].type=='intervall'">
+                        <ion-label class="label" position="stacked">Intervall in Monaten</ion-label>
+                        <ion-input class="inputFieldFull" type="number" [(ngModel)]="ppe.properties[i].minValue"
+                            [ngModelOptions]="{standalone: true}" placeholder="Intervall">
+                        </ion-input>
+                    </ion-item>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-button class="primaryButtonText" (click)="presentAlertConfirm()">
+        <ion-icon src="../../../assets/icon/save.svg"></ion-icon>
+        <ion-text>Aktualisieren</ion-text>
+    </ion-button>
+
+</form>

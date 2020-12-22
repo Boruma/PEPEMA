@@ -1,0 +1,87 @@
+<ion-grid>
+    <ion-row>
+        <ion-col>
+            <ion-toolbar>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="none" class="dropdown">
+                            <ion-select placeholder="Lieferant" interface="popover" class="dropdown"
+                                (ionChange)="changeSupplier($event)" [(ngModel)]="selectedSupplier">
+                                <ion-select-option class="dropdownOption" *ngFor="let suppl of supplier"
+                                    value="{{suppl.supplier_ID}}">
+                                    {{suppl.name}}
+                                </ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button class="primaryButtonIcon ion-float-right" (click)="openCreatePsa()"
+                            *ngIf="supplIsSelected">
+                            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                            <ion-text>Artikel</ion-text>
+                        </ion-button>
+                        <ion-button class="primaryButtonIcon ion-float-right" disabled="true" *ngIf="!supplIsSelected">
+                            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                            <ion-text>Artikel</ion-text>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-text *ngIf="!supplIsSelected" class="textRed">Bitte Lieferanten auswählen!</ion-text>
+                        <ion-text *ngIf="!newPpesIsEmpty">Gesamtmenge: {{newPpes.length}}</ion-text>
+                    </ion-col>
+                    <ion-col></ion-col>
+                </ion-row>
+            </ion-toolbar>
+
+            <ion-card>
+                <ion-list-header>
+                    <h5>Neue Bestellung</h5>
+                    <h5 *ngIf="supplIsSelected">Lieferant: {{newOrder.supplier.name}}</h5>
+                </ion-list-header>
+
+                <ion-item *ngIf="newPpesIsEmpty" lines="none">
+                    <ion-label>
+                        Noch kein Artikel enthalten.
+                    </ion-label>
+                </ion-item>
+
+                <ion-list *ngFor="let ppe of newPpes; let i = index">
+
+                    <ion-item [button]="true">
+                        <ion-note slot="end" color="primary">
+                            <ion-button class="primaryButtonIcon" (click)="presentAlertConfirmDeletePPE(i)">
+                                <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+                            </ion-button>
+                        </ion-note>
+
+                        <ion-label *ngIf="ppe.size_ranges.length == 0">{{i+1}}. {{ppe.pe.supplItemID}} {{ppe.pe.name}}
+                        </ion-label>
+                        <ion-label *ngIf="ppe.size_ranges.length != 0">{{i+1}}. {{ppe.pe.supplItemID}} {{ppe.pe.name}}
+                            <ion-label *ngFor="let size_range of ppe.size_ranges">
+                                <ion-text *ngIf="size_range.sizes != null && size_range.sizes.length != 0">
+                                    {{size_range.name}}: {{size_range.sizes[0].name}}
+                                </ion-text>
+                            </ion-label>
+                        </ion-label>
+                    </ion-item>
+
+                </ion-list>
+
+                <ion-button class="primaryButtonText" *ngIf="!newPpesIsEmpty" type="submit"
+                    (click)="presentAlertConfirmCancel()">
+                    <ion-icon src="../../../assets/icon/abort.svg"></ion-icon>
+                    <ion-text>Abbrechen</ion-text>
+                </ion-button>
+                <ion-button class="primaryButtonText" *ngIf="!newPpesIsEmpty" type="submit"
+                    (click)="createFinalOrder()">
+                    <ion-icon src="../../../assets/icon/check.svg"></ion-icon>
+                    <ion-text>Erstellen</ion-text>
+                </ion-button>
+
+            </ion-card>
+
+        </ion-col>
+    </ion-row>
+</ion-grid>

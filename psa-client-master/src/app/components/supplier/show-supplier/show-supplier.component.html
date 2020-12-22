@@ -1,0 +1,48 @@
+<ion-row class="ion-align-items-center showDesktop">
+    <ion-col size="8" *ngIf="supplier != null">
+        <ion-item lines="none">
+            <ion-label class="detailName">{{supplier.name}}</ion-label>
+        </ion-item>
+    </ion-col>
+    <ion-col size="4">
+        <ion-button class="primaryButtonIcon ion-float-right" (click)="editSupplier(supplier)">
+            <ion-icon src="../../../assets/icon/edit.svg"></ion-icon>
+        </ion-button>
+        <ion-button class="primaryButtonIcon ion-float-right" (click)="presentAlertConfirm(supplier)">
+            <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+        </ion-button>
+    </ion-col>
+</ion-row>
+
+<ion-list *ngIf="supplier != null">
+    <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-label text-wrap>{{supplier.name}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>E-Mail:</ion-label>
+        <ion-label>{{supplier.email}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Straße:</ion-label>
+        <ion-label>{{supplier.address.street}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>Hausnummer:</ion-label>
+        <ion-label>{{supplier.address.housenumber}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>PLZ:</ion-label>
+        <ion-label>{{supplier.address.postcode}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>Ort:</ion-label>
+        <ion-label>{{supplier.address.place}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>Adresszusatz:</ion-label>
+        <ion-label>{{supplier.address.address_additional}}</ion-label>
+    </ion-item>
+
+</ion-list>

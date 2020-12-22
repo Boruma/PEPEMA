@@ -1,0 +1,30 @@
+
+.roleName {
+  display: block;
+}
+
+.peList {
+  margin-left: 10px;
+}
+
+.element {
+  --inner-padding-end: 0;
+}
+
+.pe {
+  display: block;
+  width: 100%;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+.ppeRow {
+  padding-left: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+.ppe {
+  width: 100%;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}

@@ -1,0 +1,266 @@
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title> {{Pe.name}}</ion-card-title>
+        </ion-card-header>
+        <form [formGroup]="psaForm">
+            <div [formGroup]="profileForm">
+                PSA Name:
+                <ion-input class="inputField" type="text" formControlName="psaName"></ion-input>
+                <ng-container *ngFor="let validation of validation_messages.name">
+                    <div *ngIf="profileForm.get('psaName').hasError(validation.type) && (profileForm.get('psaName').dirty || profileForm.get('psaName').touched)"
+                        style="color: red;">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+                <h3>Aktueller Lieferant: {{currentSupplier.name}}</h3>
+
+                <ion-item class="dropdown">
+                    <ion-select interface="popover" class="dropdown activated" (ionChange)="dropdownFunction($event)"
+                        style="margin-bottom: 30px;">
+                        <ion-select-option class="dropdownOption" *ngFor="let entry of dropdownOptions"
+                            selected="id == dropdownDefault" value="{{entry.id}}">
+                            {{entry.val}}
+                        </ion-select-option>
+                    </ion-select>
+
+                </ion-item>
+                <ion-label>
+                    Lieferanten Artikelnummer:
+                </ion-label>
+                <ion-input class="inputField" type="text" formControlName="supplier_itemID" id="supplier_itemID"
+                    placeholder="z.B. HA-100118625" style="font-weight: 400"></ion-input>
+
+                <ng-container *ngFor="let validation of validation_messages.name">
+                    <div *ngIf="profileForm.get('supplier_itemID').hasError(validation.type) && (profileForm.get('supplier_itemID').dirty || profileForm.get('supplier_itemID').touched)"
+                        style="color: red;">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+
+            </div>
+
+            <h2>Rollen</h2>
+            <ion-card>
+                <ion-row>
+                    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6">
+
+                        <ion-list>
+                            <ion-list-header>
+                                <h5>Restliche Rollen</h5>
+                            </ion-list-header>
+                            <div class="searchDiv">
+                                <ion-searchbar (ionChange)="onSearchTerm($event)" placeholder="Suche nach Rollen">
+                                </ion-searchbar>
+                                <ion-button class="primaryButtonIcon">
+                                    <ion-icon src="../../../assets/icon/filter.svg"></ion-icon>
+                                </ion-button>
+                            </div>
+                            <ion-item *ngFor="let role of roles">
+                                <ion-text>{{role.name}}</ion-text>
+                                <ion-button slot="end" class="primaryButtonIcon ion-float-right"
+                                    (click)="addRoleToTemplate(role)">
+                                    <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                                </ion-button>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6">
+                        <ion-list>
+                            <ion-list-header>
+                                <h5>Zugeordnete Rollen</h5>
+                            </ion-list-header>
+                            <div *ngIf="rolestoTemplate.length == 0">
+                                <ion-text class="error_message">Bitte mindestends eine Rolle zuordnen</ion-text>
+                            </div>
+                            <ion-item *ngFor="let role of rolestoTemplate">
+                                <ion-text>{{role.name}}</ion-text>
+                                <ion-button slot="end" class="primaryButtonIcon ion-float-right"
+                                    (click)="removeRoleFromTemplate(role)">
+                                    <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+                                </ion-button>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+
+            <h2>Eigenschaften</h2>
+            <ion-grid class="showMobile">
+                <ion-row>
+                    <ion-col size="4" formArrayName="psaFormElements"
+                        *ngFor="let form of psaFormControls; let i = index;">
+                        <ion-card class="property_card" [button]="true" (click)="addPropertyMobile(true, form, i)">
+                            <ion-label>Eigenschaft {{i + 1}}</ion-label>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size-xs="4" size-sm="3" size-md="2" size-lg="2">
+                        <ion-card [button]="true" (click)="addPropertyMobile(false, null, 0)" class="property_card">
+
+                            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+
+                        </ion-card>
+                    </ion-col>
+
+                </ion-row>
+            </ion-grid>
+            <ion-grid class="ion-no-padding" class="showDesktop">
+                <ion-row class="ion-no-padding">
+
+                    <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="3" formArrayName="psaFormElements"
+                        *ngFor="let form of psaFormControls; let i = index;">
+                        <div [formGroupName]="i">
+                            <ion-card>
+
+                                <h5>Eigenschaft {{i + 1}}</h5>
+
+                                <ion-item lines="none" class="dropdownFull" style="padding-bottom: 7px;">
+                                    <ion-select interface="popover" class="dropdown activated"
+                                        (ionChange)="showFormArray($event)">
+                                        <ion-select-option class="dropdownOption" selected="selected">
+                                            Option wählen
+                                        </ion-select-option>
+
+                                        <ion-select-option class="dropdownOption" value="intervall {{i}}">
+                                            Intervall
+                                        </ion-select-option>
+
+                                        <ion-select-option class="dropdownOption" value="date {{i}}">
+                                            Date
+                                        </ion-select-option>
+
+                                        <ion-select-option class="dropdownOption" value="counterAsc {{i}}">
+                                            Zähler aufsteigend
+                                        </ion-select-option>
+
+                                        <ion-select-option class="dropdownOption" value="counterDesc {{i}}">
+                                            Zähler absteigend
+                                        </ion-select-option>
+
+                                        <ion-select-option class="dropdownOption" value="value {{i}}">
+                                            Einfacher Wert
+                                        </ion-select-option>
+
+                                        <ion-select-option class="dropdownOption" value="text {{i}}">
+                                            Text
+                                        </ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <div *ngIf="this.Pe.properties[i]">
+                                    <ion-label class="label" position="stacked">Name:</ion-label>
+                                    <ion-input type="text" class="inputFieldFull" formControlName="name"
+                                        placeholder="z.B. Waschungen">
+                                    </ion-input>
+                                </div>
+                                <ion-button class="primaryButtonIcon ion-float-right" (click)='removeProperty(i)'>
+                                    <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+                                </ion-button>
+
+                            </ion-card>
+                        </div>
+                    </ion-col>
+                    <ion-button type="button" class="primaryButtonIcon ion-float-right" (click)="addemptyProperty()">
+                        <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                        <ion-text>Weitere Eigenschaft</ion-text>
+                    </ion-button>
+                </ion-row>
+            </ion-grid>
+            <div [formGroup]="sizeRangeForm">
+                <h2>Größensammlungen</h2>
+                <div formArrayName="sizeRanges">
+                    <ion-grid class="showMobile">
+                        <ion-row>
+                            <ion-col size="4" *ngFor="let sizeRange of this.formData.controls;
+                            let sizeRangeIndex = index" [formGroupName]="sizeRangeIndex">
+                                <ion-card class="property_card" [button]="true"
+                                    (click)="addSizeRangeMobile(true, sizeRange, sizeRangeIndex)">
+                                    <ion-label>Größensammlung {{sizeRangeIndex + 1}}</ion-label>
+                                </ion-card>
+                            </ion-col>
+                            <!-- Test / Edited -->
+                            <ion-col size-xs="4" size-sm="3" size-md="2" size-lg="2">
+                                <ion-card [button]="true" (click)="addSizeRangeMobile(false, null, 0)"
+                                    class="property_card">
+
+                                    <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+
+                                </ion-card>
+                            </ion-col>
+
+                        </ion-row>
+                    </ion-grid>
+                    <ion-grid class="ion-no-padding" class="showDesktop">
+                        <ion-row class="ion-no-padding">
+                            <ion-col size-sm="12" size-md="6" size-lg="3" *ngFor="let sizeRange of this.formData.controls;
+              let sizeRangeIndex = index" [formGroupName]="sizeRangeIndex">
+                                <ion-card>
+
+                                    <ion-label class="label" position="stacked">Name</ion-label>
+                                    <ion-input class="inputFieldFull" type="text" formControlName="name"
+                                        placeholder="z.B. Hosengröße">
+                                    </ion-input>
+
+
+                                    <div formArrayName="sizes">
+                                        <div *ngFor="
+                            let player of sizeRange.get('sizes').controls;
+                            let sizeIndex = index
+                          " [formGroupName]="sizeIndex">
+
+                                            <ion-row>
+
+                                                <ion-col size-xs="8" size-sm="8" size-md="8" size-lg="8"
+                                                    style="padding-left:0px;">
+                                                    <ion-label class="label" position="stacked">Größe</ion-label>
+                                                    <ion-input class="inputFieldFull" type="text" formControlName="name"
+                                                        placeholder="z.B. L, 80, 56-58">
+                                                    </ion-input>
+                                                </ion-col>
+                                                <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4"
+                                                    style="padding-right:0px;">
+                                                    <ion-button class="primaryButtonIcon ion-float-right"
+                                                        (click)="deleteSize(sizeRange, sizeIndex)"
+                                                        style="margin-top: 20px;">
+                                                        <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+                                                    </ion-button>
+                                                </ion-col>
+                                            </ion-row>
+
+
+                                        </div>
+                                        <ion-button class="primaryButtonIcon" (click)="addSize(sizeRange)"
+                                            style="width: 100%;">
+                                            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                                            <ion-text>Weitere Größe</ion-text>
+                                        </ion-button>
+                                    </div>
+
+
+                                    <hr />
+                                    <ion-button class="primaryButtonIcon ion-float-right"
+                                        (click)="deletesizeRange(sizeRangeIndex)">
+                                        <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+                                    </ion-button>
+                                </ion-card>
+                            </ion-col>
+                            <ion-button type="button" class="primaryButtonIcon" (click)="addsizeRange()">
+                                <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                                <ion-text>Weitere Größensammlung</ion-text>
+                            </ion-button>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+            </div>
+
+            <ion-button class="primaryButtonText" (click)='editpsatemplate()'>
+                <ion-icon src="../../../assets/icon/save.svg"></ion-icon>
+                <ion-text>Aktualisieren</ion-text>
+            </ion-button>
+
+        </form>
+    </ion-card>
+
+
+</ion-content>

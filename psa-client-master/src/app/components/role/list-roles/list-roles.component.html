@@ -1,0 +1,36 @@
+<!-- List roles -->
+
+<ion-row class="ion-align-items-center showDesktopFlex">
+    <ion-col>
+        <ion-button class="primaryButtonIcon ion-float-right" (click)="addRole()">
+            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+            <ion-text>Neue Rolle</ion-text>
+        </ion-button>
+    </ion-col>
+</ion-row>
+
+<div class="searchDiv">
+    <ion-searchbar (ionChange)="onSearchTerm($event)" placeholder="Suchen..."></ion-searchbar>
+</div>
+<ion-list>
+    <ion-list-header>
+        <ion-select interface="popover" class="dropdown activated" (ionChange)="dropdownFunction($event)">
+            <ion-select-option class="dropdownOption" *ngFor="let entry of dropdownOptions"
+                selected="id == dropdownDefault" value="{{entry.id}}">
+                {{entry.val}}
+            </ion-select-option>
+        </ion-select>
+    </ion-list-header>
+    <ion-item button="true" *ngFor="let role of roles; let i = index" (click)="showRoleDesktop(role)"
+        (click)="setListIndex(i)" class="showDesktop">
+        <ion-text [color]="(listIndex === i)  ? 'secondary' : 'primary'">
+            {{role.name}}
+        </ion-text>
+    </ion-item>
+    <ion-item button="true" *ngFor="let role of roles; let i = index" (click)="showRole(role)" (click)="setListIndex(i)"
+        class="showMobile">
+        <ion-text [color]="(listIndex === i)  ? 'secondary' : 'primary'">
+            {{role.name}}
+        </ion-text>
+    </ion-item>
+</ion-list>

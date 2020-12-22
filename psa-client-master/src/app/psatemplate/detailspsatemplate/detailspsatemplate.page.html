@@ -1,0 +1,19 @@
+<ion-content>
+  <ion-fab class="showMobile actionButton" vertical="bottom" horizontal="end" slot="fixed" edge>
+    <ion-fab-button class="primaryButtonIcon">
+      <ion-icon src="../../../assets/icon/edit.svg"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="updateTemplate()">
+        <ion-icon src="../../../assets/icon/edit.svg"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="deleteTemplate()">
+        <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+
+  </ion-fab>
+  <div class="content">
+    <app-show-psatemplate></app-show-psatemplate>
+  </div>
+</ion-content>

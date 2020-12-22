@@ -1,0 +1,29 @@
+<ion-content>
+  <ion-fab class="showMobile actionButton" vertical="bottom" horizontal="end" slot="fixed" edge >
+    <ion-fab-button class="primaryButtonIcon">
+        <ion-icon src="../../../assets/icon/dotsVertical.svg"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="scanPsa()">
+        <ion-icon src="../../../assets/icon/barcode.svg" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    
+  </ion-fab>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="12" size-md="12" size-lg="6" class="pageCol" class="pageCol">
+
+        <app-list-allpsa></app-list-allpsa>
+
+      </ion-col>
+      <ion-col size-sm="12" size-md="12" size-lg="6" class="showDesktop">
+
+        <ion-card [ngClass]="{'hidden' : show == false}">
+          <app-show-psa></app-show-psa>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

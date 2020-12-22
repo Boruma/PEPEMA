@@ -1,0 +1,122 @@
+<ion-grid *ngIf="order != null">
+    <ion-row>
+        <ion-col>
+            <ion-toolbar>
+                <ion-row>
+                    <ion-col>
+                        <div *ngIf="order.state == null">
+                            <h2 *ngIf="order.state == null">Bestellliste Nr. {{order.order_ID}}</h2>
+                            <ion-label>noch nicht bestellt</ion-label>
+                        </div>
+                        <div *ngIf="order.state == 'ordered'">
+                            <h2>Bestellung Nr. {{order.order_ID}}</h2>
+                            <ion-label>bestellt am {{order.orderdate}}</ion-label>
+                        </div>
+                        <div *ngIf="order.state == 'delivered'">
+                            <h2>Bestellung Nr. {{order.order_ID}}</h2>
+                            <ion-label>geliefert am {{order.commitedDeliveryDate}}</ion-label>
+                            <br />
+                            <ion-label>Lieferant: {{order.supplier.name}}</ion-label>
+                        </div>
+                    </ion-col>
+
+                    <ion-col>
+                        <ion-button class="primaryButtonIcon ion-float-right" (click)="presentAlertConfirmDelete()">
+                            <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+                            <ion-text>Löschen</ion-text>
+                        </ion-button>
+                        <ion-button *ngIf="order.state == null" class="primaryButtonIcon ion-float-right"
+                            (click)="openCreatePsa()">
+                            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                            <ion-text>Artikel</ion-text>
+                        </ion-button>
+                    </ion-col>
+
+                </ion-row>
+
+            </ion-toolbar>
+
+            <ion-row>
+                <ion-col size="7">
+                    <h5>Name und Größen</h5>
+                </ion-col>
+                <ion-col size="3">
+                    <h5 *ngIf="order.state == 'ordered'"> Geliefert</h5>
+                </ion-col>
+                <ion-col size="2"></ion-col>
+            </ion-row>
+
+            <ion-list *ngFor="let ppe of order.ppes; let i = index">
+                <ion-item>
+                    <ion-row>
+                        <ion-col size="7">
+                            <ion-text *ngIf="ppe.size_ranges.length == 0">{{i+1}}. {{ppe.pe.supplItemID}}
+                                {{ppe.pe.name}}
+                            </ion-text>
+                            <ion-text *ngIf="ppe.size_ranges.length != 0">{{i+1}}. {{ppe.pe.supplItemID}}
+                                {{ppe.pe.name}}
+                                <div *ngFor="let size_range of ppe.size_ranges">
+                                    <ion-text *ngIf="size_range.sizes != null && size_range.sizes.length != 0">
+                                        {{size_range.name}}:
+                                        {{size_range.sizes[0].name}}
+                                    </ion-text>
+                                </div>
+                            </ion-text>
+                        </ion-col>
+
+                        <ion-col size="3">
+                            <div *ngIf="order.state == 'ordered'" class="checkboxDiv">
+                                <ion-checkbox *ngIf="order.state == 'ordered' && ppe.delivered != 1"
+                                    (ionChange)="deliveredPPE($event, ppe)" [(ngModel)]="ppe.delivered"></ion-checkbox>
+                                <ion-checkbox *ngIf="order.state == 'ordered' && ppe.delivered == 1" [disabled]="true"
+                                    checked="true"></ion-checkbox>
+                            </div>
+                        </ion-col>
+                        <ion-col size="2">
+                            <ion-item class="buttonItem" lines="none">
+                                <ion-button class="primaryButtonIcon" (click)="presentAlertConfirmDeletePPE(i)"
+                                    slot="end">
+                                    <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+                                </ion-button>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-item>
+            </ion-list>
+
+
+            <ion-col>
+                <ion-label *ngIf="order.ppes != null">Gesamtmenge: {{order.ppes.length}}</ion-label>
+            </ion-col>
+
+            <div *ngIf="!showSetOrderData && order.state==null">
+                <ion-button class="primaryButtonText" type="submit" (click)="changeShowSetOrderData()">
+                    <ion-icon src="../../../assets/icon/check.svg"></ion-icon>
+                    <ion-text>Manuell bestellt</ion-text>
+                </ion-button>
+                <ion-button class="primaryButtonText" type="submit" (click)="startOrderMail()">
+                    <ion-icon src="../../../assets/icon/eMail.svg"></ion-icon>
+                    <ion-text>Per eMail bestellen</ion-text>
+                </ion-button>
+            </div>
+
+            <div *ngIf="showSetOrderData  && order.state==null">
+
+                <ion-item lines="none">
+                    <ion-label>Wann wurde die Bestellung getätigt?</ion-label>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label class="label" position="stacked">Bestelldatum:</ion-label>
+                    <ion-input class="inputFieldFull" type="date" [(ngModel)]="orderDate" placeholder="Datum">
+                    </ion-input>
+                </ion-item>
+                <ion-button class="primaryButtonText" [disabled]="orderDate == null" type="submit"
+                    (click)="setOrderData()">
+                    <ion-icon src="../../../assets/icon/check.svg"></ion-icon>
+                    <ion-text>Bestelldatum erfassen</ion-text>
+                </ion-button>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-grid>

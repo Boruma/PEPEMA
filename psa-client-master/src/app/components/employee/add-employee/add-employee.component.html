@@ -1,0 +1,198 @@
+<form [formGroup]="createForm">
+    <ion-item lines="none">
+
+        <!-- name -->
+        <ion-label class="label" position="stacked">Name der/des Mitarbeiter/-in*</ion-label>
+        <ion-input class="inputField" clearInput type="text" [(ngModel)]="employee.name" formControlName="name"
+            name="name" placeholder="Mitarbeiter"></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.name">
+                <div
+                    *ngIf="createForm.get('name').hasError(validation.type) && (createForm.get('name').dirty || createForm.get('name').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- email -->
+        <ion-label class="label" position="stacked">Email</ion-label>
+        <ion-input class="inputField" clearInput type="email" [(ngModel)]="employee.email" formControlName="email"
+            name="email" placeholder="Email-Adresse"></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.email">
+                <div
+                    *ngIf="createForm.get('email').hasError(validation.type) && (createForm.get('email').dirty || createForm.get('email').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- telephone -->
+        <ion-label class="label" position="stacked">Telefonnummer</ion-label>
+        <ion-input class="inputField" clearInput type="text" [(ngModel)]="employee.phonenumber"
+            formControlName="phonenumber" name="phonenumber" placeholder="Telefonnummer"></ion-input>
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.phonenumber">
+                <div
+                    *ngIf="createForm.get('phonenumber').hasError(validation.type) && (createForm.get('phonenumber').dirty || createForm.get('phonenumber').touched)">
+                    <ion-text class="error_message">{{ validation.message }}</ion-text>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- locker -->
+        <ion-label class="label" position="stacked">Platznummer</ion-label>
+        <ion-input class="inputField" clearInput type="number" [(ngModel)]="employee.locker" formControlName="locker"
+            name="locker" placeholder="0"></ion-input>
+
+
+        <!-- address -->
+        <ion-text *ngIf="showAddressDeleted" color="secondary">Adresse wurde entfernt. Wieder hinzufügen?</ion-text>
+
+        <ion-item *ngIf="!addressToggle" lines="none">
+            <ion-text>Adresse hinzufügen</ion-text>
+            <ion-checkbox slot="end" [(ngModel)]="addressToggle" formControlName="toggleAddress"
+                (click)="toggleAddressForm()" (click)="toggleDeleteMessage()"></ion-checkbox>
+        </ion-item>
+
+        <ion-item *ngIf="addressToggle">
+            <ion-text>
+                <h6>Adresse</h6>
+            </ion-text>
+
+            <ion-checkbox slot="end" [(ngModel)]="addressToggle" formControlName="toggleAddress"
+                (click)="toggleAddressForm()" (click)="toggleDeleteMessage()"></ion-checkbox>
+        </ion-item>
+
+
+        <form novalidate [formGroup]="addressForm" *ngIf="addressToggle">
+            <!-- place -->
+            <ion-item>
+                <ion-label class="label" position="stacked">Ort</ion-label>
+                <ion-input class="inputField" clearInput type="text" [(ngModel)]="employee.address.place"
+                    formControlName="place" name="place" placeholder="Ort"></ion-input>
+            </ion-item>
+
+            <div>
+                <ng-container *ngFor="let validation of validation_messages.place">
+                    <div
+                        *ngIf="addressForm.get('place').hasError(validation.type) && (addressForm.get('place').dirty || addressForm.get('place').touched)">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- street -->
+            <ion-item>
+                <ion-label class="label" position="stacked">Straße</ion-label>
+                <ion-input class="inputField" clearInput type="text" [(ngModel)]="employee.address.street"
+                    formControlName="street" name="street" placeholder="Straße"></ion-input>
+            </ion-item>
+
+            <div>
+                <ng-container *ngFor="let validation of validation_messages.street">
+                    <div
+                        *ngIf="addressForm.get('street').hasError(validation.type) && (addressForm.get('street').dirty || addressForm.get('street').touched)">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- number -->
+            <ion-item>
+                <ion-label class="label" position="stacked">Hausnummer</ion-label>
+                <ion-input class="inputField" clearInput type="text" [(ngModel)]="employee.address.housenumber"
+                    formControlName="housenumber" name="housenumber" placeholder="Nummer"></ion-input>
+            </ion-item>
+
+            <div>
+                <ng-container *ngFor="let validation of validation_messages.housenumber">
+                    <div
+                        *ngIf="addressForm.get('housenumber').hasError(validation.type) && (addressForm.get('housenumber').dirty || addressForm.get('housenumber').touched)">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- postcode -->
+            <ion-item>
+                <ion-label class="label" position="stacked">Postleitzahl</ion-label>
+                <ion-input class="inputField" clearInput type="text" [(ngModel)]="employee.address.postcode"
+                    formControlName="postcode" name="postcode" placeholder="PLZ"></ion-input>
+            </ion-item>
+
+            <div>
+                <ng-container *ngFor="let validation of validation_messages.postcode">
+                    <div
+                        *ngIf="addressForm.get('postcode').hasError(validation.type) && (addressForm.get('postcode').dirty || addressForm.get('postcode').touched)">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- addressAdditional -->
+            <ion-item>
+                <ion-label class="label" position="stacked">Adresszusatz</ion-label>
+                <ion-input class="inputField" clearInput type="text" [(ngModel)]="employee.address.address_additional"
+                    formControlName="address_additional" name="address_additional" placeholder="Zusatz"></ion-input>
+            </ion-item>
+            <div>
+                <ng-container *ngFor="let validation of validation_messages.address_additional">
+                    <div
+                        *ngIf="addressForm.get('address_additional').hasError(validation.type) && (addressForm.get('address_additional').dirty || addressForm.get('address_additional').touched)">
+                        <ion-text class="error_message">{{ validation.message }}</ion-text>
+                    </div>
+                </ng-container>
+            </div>
+        </form>
+    </ion-item>
+
+    <ion-item lines="none">
+        <h2>Rollen</h2>
+    </ion-item>
+
+    <ion-item lines="none">
+        <ion-row>
+            <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6">
+
+                <ion-list>
+                    <ion-list-header>
+                        <ion-label>Restliche Rollen:</ion-label>
+                    </ion-list-header>
+                    <div class="searchDiv">
+                        <ion-searchbar (ionChange)="onSearchTerm($event)" placeholder="Suche nach Rollen">
+                        </ion-searchbar>
+                    </div>
+
+                    <ion-item *ngFor="let role of otherRoles">
+                        <ion-text>{{role.name}}</ion-text>
+                        <ion-button slot="end" class="primaryButtonIcon ion-float-right" (click)="addRole(role)">
+                            <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+
+                </ion-list>
+            </ion-col>
+            <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6">
+                <ion-list>
+                    <ion-list-header>
+                        <ion-label>Zugeordnete Rollen:</ion-label>
+                    </ion-list-header>
+                    <ion-item *ngFor="let role of employee.roles">
+                        <ion-text>{{role.name}}</ion-text>
+                        <ion-button slot="end" class="primaryButtonIcon ion-float-right" (click)="removeRole(role)">
+                            <ion-icon src="../../../assets/icon/delete.svg"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-item>
+
+
+    <ion-button [disabled]="(createForm.invalid || addressForm.invalid) && attemptedSubmit" color="primary"
+        class="primaryButtonText" full type="submit" (click)="createEmployee()">
+        <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+        <ion-text>Erstellen</ion-text>
+    </ion-button>
+</form>

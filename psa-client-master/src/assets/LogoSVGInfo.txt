@@ -1,0 +1,13 @@
+Drei verschiedene Logo Varianten.
+
+Variante 1: Bild mit Schrift daneben
+Variante 2: Bild mit Schrift darunter
+Variante 3: App Icon mit weißem Bild auf blauem Grund
+
+"allLogos.svg" enthält alle drei Logos auf drei Ebenen. Zwei der Logos stehen auf 'display="none"'.
+So können die Logos einzeln eingeblendet werden.
+Alle Dateien können leicht im Texteditor bearbeitet werden (Farben, Positionen).
+
+Die ai-Datei enthält alle Logo Varianten.
+
+svg-Dateien erstellt von: Prof. Dr. Julius Schöning

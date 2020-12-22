@@ -1,0 +1,95 @@
+<ion-row class="ion-align-items-center showDesktopFlex">
+    <ion-col size="8" *ngIf="employee != null">
+        <ion-item lines="none">
+            <ion-label class="detailName">{{employee.name}}</ion-label>
+        </ion-item>
+    </ion-col>
+    <ion-col size="4">
+
+        <ion-button class="primaryButtonIcon ion-float-right" (click)="editEmployee()">
+            <ion-icon src="../../../assets/icon/edit.svg">Button1</ion-icon>
+        </ion-button>
+        <ion-button class="primaryButtonIcon ion-float-right" (click)="presentAlertConfirm()">
+            <ion-icon src="../../../assets/icon/delete.svg">Button2</ion-icon>
+        </ion-button>
+
+    </ion-col>
+</ion-row>
+
+<ion-list *ngIf="employee != null">
+
+    <ion-list>
+        <ion-item>
+            <ion-label>Name:</ion-label>
+            <ion-label text-wrap>{{employee.name}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>E-Mail:</ion-label>
+            <ion-label>{{employee.email}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Telefon:</ion-label>
+            <ion-label>{{employee.phonenumber}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Platznr.:</ion-label>
+            <ion-label>{{employee.locker}}</ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="showAddress()">
+
+        <ion-item>
+            <ion-label>Straße:</ion-label>
+            <ion-label>{{employee.address.street}} {{employee.address.housenumber}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Ort:</ion-label>
+            <ion-label>{{employee.address.postcode}} {{employee.address.place}}</ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="employee.address.address_additional">
+            <ion-label>Adresszusatz:</ion-label>
+            <ion-label>{{employee.address.address_additional}}</ion-label>
+        </ion-item>
+
+    </ion-list>
+
+
+    <ion-item>
+        <ion-label class="heading">Rollen:</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let role of employee.roles" lines="none">
+        <ion-label>{{role.name}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+        <ion-label class="heading">verfügbare Schutzausrüstung:</ion-label>
+    </ion-item>
+    <ion-grid class="peList">
+        <ion-col size="12" *ngFor="let entry of availablePes | keyvalue" lines="none">
+            <ion-row size="12">
+                <ion-item lines="none" class="pe">
+                    <ion-text>{{entry.key.name}}</ion-text>
+                    <ion-button class="primaryButtonIcon" (click)="addpsa(employee,entry.key)" slot="end">
+                        <ion-icon src="../../../assets/icon/create.svg"></ion-icon>
+                        <ion-text>PSA</ion-text>
+                    </ion-button>
+                </ion-item>
+            </ion-row>
+            <ion-row size="12" class="ppeRow">
+                <ion-item *ngFor="let value of entry.value" lines="none" class="ppe">
+                    <ion-text>{{value.sn}} {{value.pe.name}}</ion-text>
+                    <ion-button class="primaryButtonIcon" (click)="presentAlertConfirmUnassignOne(value)" slot="end">
+                        <ion-icon src="../../../assets/icon/remove.svg"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </ion-row>
+        </ion-col>
+    </ion-grid>
+
+</ion-list>

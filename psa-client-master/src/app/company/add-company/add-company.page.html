@@ -1,0 +1,13 @@
+<ion-content class="ion-padding">
+    <form [formGroup]="createForm">
+        <ion-item lines="none">
+            <ion-label position="floating">Name des Unternehmens</ion-label>
+            <ion-input clearInput type="text" [(ngModel)]="name" formControlName="name" name="name"
+                placeholder="Unternehmen"></ion-input>
+        </ion-item>
+        <ion-button [disabled]="!createForm.valid" expand="block" color="primary" class="submit-btn" full type="submit"
+            (click)="createCompany()">
+            Erstellen
+        </ion-button>
+    </form>
+</ion-content>

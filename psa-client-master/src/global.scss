@@ -1,0 +1,545 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+//General Page setup
+/// NavBar ///
+ion-menu {
+  margin-top: 50px;
+}
+
+.split-pane-visible > .split-pane-side {
+  max-width: 175px !important;
+}
+
+ion-split-pane {
+  height: 93% !important;
+  contain: none !important;
+}
+
+.split-pane-md.split-pane-visible > .split-pane-side {
+  min-width: 230px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.active {
+  color: #ffb926 !important;
+  font-size: 15px;
+}
+
+.active ion-icon {
+  color: #ffb926 !important;
+}
+
+.active ion-label {
+  color: #ffb926 !important;
+}
+
+//////
+
+head,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html,
+body {
+  //font-weight: 600;
+  font-weight: normal;
+}
+
+.showDesktop {
+  display: block;
+}
+
+.showDesktopFlex {
+  display: flex;
+}
+
+.showMobile {
+  display: none;
+}
+
+.textRed {
+  color: red;
+}
+
+h5 {
+  color: #424242;
+}
+
+.heading {
+  font-weight: bold;
+}
+
+//left and right column together in content
+.content {
+  width: 100%;
+  padding: 10px;
+  padding-top: 0;
+  display: inline-block;
+}
+
+.columns {
+  display: flex;
+}
+
+.leftColumn,
+.rightColumn {
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+  padding: 10px;
+}
+
+.pageCol {
+  padding-right: 5px;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+ion-content {
+  width: 100%;
+  height: 100%;
+}
+
+#content1 {
+  top: 38pt;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+//Container
+.sc-ion-card-md-h {
+  margin: 0;
+  padding: 10px;
+  font-size: 10pt;
+}
+
+.itemDivider {
+  border-right: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+ion-toolbar {
+  min-height: 10px;
+}
+
+.divFlowRoot {
+  display: flow-root;
+}
+
+ion-row {
+  width: 100%;
+}
+
+ion-col {
+  padding: 0;
+}
+
+.list-md {
+  padding: 0;
+  margin: 0;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+h2 {
+  font-size: 14pt;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+ion-list-header {
+  padding: 0;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+//Buttons
+ion-button {
+  max-width: 280px;
+}
+
+.primaryButtonText ion-icon,
+.secondaryButtonText ion-icon {
+  margin: 0 10px 0 0;
+}
+
+.primaryButtonIcon ion-icon,
+.secondaryButtonIcon ion-icon {
+  margin: 0;
+}
+
+//primary
+.primaryButtonText ion-icon,
+.primaryButtonIcon ion-icon {
+  color: var(--ion-color-primary-contrast);
+}
+
+//secondary
+.secondaryButtonIcon,
+.secondaryButtonText {
+  --background: white;
+  --background-hover: var(--ion-color-primary-contrast-tint);
+  color: var(--ion-color-primary);
+}
+
+.actionButton {
+  margin-bottom: 40px;
+  margin-right: 10px;
+}
+
+////////////////////////////////////////////////////////////
+
+//Menu
+
+.list-md-lines-full .item,
+.list-md .item-lines-full {
+  --border-width: 0;
+  margin-top: 0px;
+}
+
+.menu-item {
+  width: 20pt !important;
+  height: 20pt !important;
+  margin: 0;
+  margin-right: 25px;
+}
+
+.burger {
+  margin-top: -10px;
+}
+
+.back_button ion-back-button {
+  margin-top: -10px;
+  display: block !important;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+//Icons
+ion-icon {
+  width: 15pt;
+  height: 15pt;
+  color: var(--ion-color-primary);
+  margin: 5px;
+}
+
+ion-item ion-icon {
+  width: 13pt;
+  height: 13pt;
+}
+
+.backIcon {
+  color: black;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+//SearchBar
+.sc-ion-searchbar-md-h {
+  padding-left: 0;
+}
+
+.searchbar-search-icon.sc-ion-searchbar-md {
+  left: 6px;
+  top: 6px;
+}
+
+.searchbar-input.sc-ion-searchbar-md {
+  padding-inline-start: 35px;
+}
+
+.searchDiv {
+  display: flex;
+  align-items: center;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+//Text
+ion-text {
+  margin: 5px;
+}
+
+.detailName {
+  color: var(--ion-color-primary) !important;
+  font-size: 20px !important;
+}
+
+//HeaderBox
+ion-header {
+  height: 45px;
+  box-shadow: 0px 3px 3px var(--ion-color-primary-fade);
+  color: black;
+  align-items: center;
+  right: 0;
+}
+
+ion-header ion-toolbar {
+  height: 45px;
+}
+
+ion-header ion-toolbar .header {
+  margin-top: -5px;
+}
+
+.header {
+  align-items: center;
+  padding-left: 65px;
+  right: 0;
+  z-index: 8;
+}
+
+.headerLogoWide {
+  height: 38px;
+  margin-top: -10px;
+  margin-left: 55px;
+  max-width: 110px;
+}
+
+
+//Title
+h1 {
+  display: inline-block;
+  font-size: 14pt;
+  margin: 0;
+}
+
+ion-item {
+  font-size: 10pt;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+//Drop Down
+.select {
+  min-width: 185px;
+  height: 22pt;
+  color: black;
+  border-radius: 2px;
+  border: 0;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  margin-bottom: 5px;
+}
+
+.dropdown {
+  --padding-start: 5;
+  display: flex;
+  align-items: center;
+  --background-hover: none;
+  margin-top: 2px;
+}
+
+.dropdown ion-select {
+  min-width: 300px;
+  height: 22pt;
+  // box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  // margin-bottom: 5px;
+  font-size: 10pt;
+  // padding-left: 5px;
+  border: 1px solid #d9d9e5;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  width: 300px;
+  padding: 19px;
+}
+
+.dropdownFull {
+  min-width: 100%;
+  --padding-start: 5;
+  display: flex;
+  align-items: center;
+  --background-hover: none;
+  margin-top: 2px;
+}
+
+.dropdownFull ion-select {
+  min-width: 100%;
+  height: 22pt;
+  // box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  // margin-bottom: 5px;
+  font-size: 10pt;
+  // padding-left: 5px;
+  border: 1px solid #d9d9e5;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 19px;
+}
+
+ion-radio {
+  opacity: 0;
+}
+
+.popover-content {
+  width: 200px !important;
+}
+
+.select-popover ion-backdrop {
+  background-color: transparent;
+}
+
+ion-select-popover ion-item {
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+//Input Field
+.inputField {
+  border: 1px solid #d9d9e5;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  width: 300px;
+  padding-left: 10px !important;
+}
+
+.inputFieldFull {
+  border: 1px solid #d9d9e5;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  padding-left: 10px !important;
+  width: 100%;
+}
+
+.label {
+  padding-bottom: 20px;
+  font-size: 17px !important;
+  margin-top: -20px !important;
+}
+
+.error_message {
+  color: red;
+}
+
+//Checkboxen
+.checkList {
+  padding: 0;
+  margin: 5px;
+}
+
+.checkList ion-item {
+  height: 20pt;
+  width: 200px;
+  margin: 2pt 0;
+  display: flex;
+  align-items: center;
+  --padding-start: 5px;
+  font-size: 10pt;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+//Cards
+
+.card * {
+  color: #006;
+}
+
+.card_header {
+  text-align: center;
+  border: 1px solid #006;
+  margin-bottom: 10px;
+}
+
+.card_secondary * {
+  color: #ffb926;
+}
+
+.card_header_secondary {
+  text-align: center;
+  border: 1px solid #ffb926;
+  margin-bottom: 10px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.property_card {
+  text-align: center;
+  height: 50px;
+}
+
+//Popover
+.custom_popover .popover-content {
+  width: 300px !important;
+}
+
+/* Some media queries for responsiveness */
+@media only screen and (max-width: 950px) {
+  .content {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+///////////Sidebar END ///////////////////////////////////////////
+
+//Content responsive
+@media (max-width: 800px) {
+  .leftColumn,
+  .rightColumn {
+    display: block;
+    width: 100%;
+  }
+
+  .columns {
+    display: block;
+  }
+}
+
+@media (max-width: 991px) {
+  .showDesktop {
+    display: none;
+  }
+  .showDesktopFlex {
+    display: none;
+  }
+  .showMobile {
+    display: block;
+  }
+
+  ion-split-pane {
+    height: 98% !important;
+  }
+
+  .header {
+    padding-left: 20px;
+  }
+
+  .headerLogoWide {
+    display: none;
+  }
+
+}

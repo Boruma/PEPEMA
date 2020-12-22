@@ -1,0 +1,37 @@
+<ion-content class="ion-padding">
+
+  <ion-label>Start Filter Datum</ion-label>
+  <ion-input class="inputField" [formControl]="startDateFilter" type="date"> </ion-input>
+
+  <ion-label>End Filter Datum</ion-label>
+  <ion-input class="inputField" [formControl]="endDateFilter" type="date"> </ion-input>
+
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-button class="primaryButtonIcon" (click)="resetFilter()">
+      <ion-icon src="../../../../../assets/icon/reset.svg"></ion-icon>
+    </ion-button>
+  </ion-fab>
+  <div>
+    <div>
+      <div>
+        <ion-input [(ngModel)]="searchText" placeholder="Suche nach Filter"></ion-input>
+      </div>
+    </div>
+
+    <ion-list>
+      <ion-item *ngFor="let g of games | filter_supplier : searchText">
+        <input (change)="getSelected()" type="checkbox" name="games" value="{{g.id}}" [(ngModel)]="g.selected" />
+        <span class="game-text">{{g.name}}</span>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+
+
+
+
+  <ion-button (click)="closeModal()">Filter anwenden</ion-button>
+
+</ion-content>

@@ -1,0 +1,201 @@
+<ion-content center>
+    <div class="content" center text-center>
+        <form novalidate [formGroup]="signupForm">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3"></ion-col>
+                    <ion-col size-xs=12 size-sm="12" size-md="6" size-lg="6">
+                        <ion-item lines="none">
+                            <ion-label class="label" position="stacked">Name des Unternehmens</ion-label>
+                            <ion-input class="inputFieldFull" clearInput placeholder="Unternehmen" type="text"
+                                [(ngModel)]="company.name" formControlName="companyName" name="companyName"></ion-input>
+
+                            <div>
+                                <ng-container *ngFor="let validation of validation_messages.companyName">
+                                    <div style="color: red;"
+                                        *ngIf="signupForm.get('companyName').hasError(validation.type) && (signupForm.get('companyName').dirty || signupForm.get('companyName').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <ion-text *ngIf="showAddressDeleted" color="secondary">Adresse wurde entfernt. Wieder
+                                hinzufügen?
+                            </ion-text>
+
+                            <ion-item *ngIf="!addressToggle" lines="none">
+                                <ion-text>Adresse hinzufügen</ion-text>
+                                <ion-checkbox slot="end" [(ngModel)]="addressToggle" formControlName="toggleAddress"
+                                    (click)="toggleAddressForm()" (click)="toggleDeleteMessage()"></ion-checkbox>
+                            </ion-item>
+
+                            <ion-text *ngIf="showAddressDeleted" color="secondary">Adresse wurde entfernt. Wieder
+                                hinzufügen?</ion-text>
+
+                            <ion-item *ngIf="addressToggle" lines="none">
+                                <ion-text>
+                                    <h6>Adresse</h6>
+                                </ion-text>
+
+                                <ion-checkbox slot="end" [(ngModel)]="addressToggle" formControlName="toggleAddress"
+                                    (click)="toggleAddressForm()" (click)="toggleDeleteMessage()"></ion-checkbox>
+                            </ion-item>
+
+                            <form novalidate [formGroup]="addressForm" *ngIf="addressToggle">
+                                <ion-item lines="none">
+                                    <ion-label class="label" position="stacked">Ort</ion-label>
+                                    <ion-input class="inputFieldFull" clearInput type="text"
+                                        [(ngModel)]="company.address.place" formControlName="place" name="place"
+                                        placeholder="Ort"></ion-input>
+
+                                    <div>
+                                        <ng-container *ngFor="let validation of validation_messages.place">
+                                            <div style="color: red;"
+                                                *ngIf="addressForm.get('place').hasError(validation.type) && (addressForm.get('place').dirty || addressForm.get('place').touched)">
+                                                {{ validation.message }}
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
+                                    <ion-label class="label" position="stacked">Straße</ion-label>
+                                    <ion-input class="inputFieldFull" clearInput type="text"
+                                        [(ngModel)]="company.address.street" formControlName="street" name="street"
+                                        placeholder="Straße"></ion-input>
+
+                                    <div>
+                                        <ng-container *ngFor="let validation of validation_messages.street">
+                                            <div style="color: red;"
+                                                *ngIf="addressForm.get('street').hasError(validation.type) && (addressForm.get('street').dirty || addressForm.get('street').touched)">
+                                                {{ validation.message }}
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
+                                    <ion-label class="label" position="stacked">Hausnummer</ion-label>
+                                    <ion-input class="inputFieldFull" clearInput type="text"
+                                        [(ngModel)]="company.address.housenumber" formControlName="housenumber"
+                                        name="housenumber" placeholder="Nummer"></ion-input>
+
+                                    <div>
+                                        <ng-container *ngFor="let validation of validation_messages.housenumber">
+                                            <div style="color: red;"
+                                                *ngIf="addressForm.get('housenumber').hasError(validation.type) && (addressForm.get('housenumber').dirty || addressForm.get('housenumber').touched)">
+                                                {{ validation.message }}
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
+                                    <ion-label class="label" position="stacked">Postleitzahl</ion-label>
+                                    <ion-input class="inputFieldFull" clearInput type="text"
+                                        [(ngModel)]="company.address.postcode" formControlName="postcode"
+                                        name="postcode" placeholder="PLZ"></ion-input>
+
+                                    <div>
+                                        <ng-container *ngFor="let validation of validation_messages.postcode">
+                                            <div style="color: red;"
+                                                *ngIf="addressForm.get('postcode').hasError(validation.type) && (addressForm.get('postcode').dirty || addressForm.get('postcode').touched)">
+                                                {{ validation.message }}
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
+                                    <ion-label class="label" position="stacked">Adresszusatz</ion-label>
+                                    <ion-input class="inputFieldFull" clearInput type="text"
+                                        [(ngModel)]="company.address.address_additional"
+                                        formControlName="address_additional" name="address_additional"
+                                        placeholder="Zusatz"></ion-input>
+
+                                    <div>
+                                        <ng-container *ngFor="let validation of validation_messages.address_additional">
+                                            <div style="color: red;"
+                                                *ngIf="addressForm.get('address_additional').hasError(validation.type) && (addressForm.get('address_additional').dirty || addressForm.get('address_additional').touched)">
+                                                {{ validation.message }}
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </ion-item>
+                            </form>
+                            <br>
+                            <ion-label>
+                                <h2>Admin anlegen</h2>
+                            </ion-label>
+
+                            <ion-label class="label" position="stacked">Name</ion-label>
+                            <ion-input class="inputFieldFull" clearInput placeholder="Benutzername" type="text"
+                                [(ngModel)]="name" formControlName="name" name="username"></ion-input>
+
+                            <div>
+                                <ng-container *ngFor="let validation of validation_messages.name">
+                                    <div style="color: red;"
+                                        *ngIf="signupForm.get('name').hasError(validation.type) && (signupForm.get('name').dirty || signupForm.get('name').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <ion-label class="label" position="stacked">Email</ion-label>
+                            <ion-input class="inputFieldFull" clearInput placeholder="Email-Adresse" type="email"
+                                [(ngModel)]="email" formControlName="email" name="email"></ion-input>
+
+                            <div>
+                                <ng-container *ngFor="let validation of validation_messages.email">
+                                    <div style="color: red;"
+                                        *ngIf="signupForm.get('email').hasError(validation.type) && (signupForm.get('email').dirty || signupForm.get('email').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <ion-label class="label" position="stacked">Passwort</ion-label>
+                            <ion-input class="inputFieldFull" clearInput placeholder="Passwort mind. 6 Zeichen"
+                                type="password" [(ngModel)]="password" password-toggle="true" formControlName="password"
+                                name="password"></ion-input>
+
+                            <div>
+                                <ng-container *ngFor="let validation of validation_messages.password">
+                                    <div style="color: red;"
+                                        *ngIf="signupForm.get('password').hasError(validation.type) && (signupForm.get('password').dirty || signupForm.get('password').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <ion-label class="label" position="stacked">Passwort bestätigen</ion-label>
+                            <ion-input class="inputFieldFull" clearInput placeholder="Passwort wiederholen"
+                                type="password" [(ngModel)]="c_password" password-toggle="true"
+                                formControlName="c_password" name="c_password"></ion-input>
+
+                            <div>
+                                <ng-container *ngFor="let validation of validation_messages.c_password">
+                                    <div style="color: red;"
+                                        *ngIf="signupForm.hasError('mismatchedPasswords') && (signupForm.get('c_password').dirty || signupForm.get('c_password').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <ion-label class="label" position="stacked">Telefonnummer</ion-label>
+                            <ion-input class="inputFieldFull" clearInput placeholder="Telefonnummer" type="text"
+                                [(ngModel)]="phonenumber" formControlName="phonenumber" name="phonenumber"></ion-input>
+
+                            <div>
+                                <ng-container *ngFor="let validation of validation_messages.phonenumber">
+                                    <div style="color: red;"
+                                        *ngIf="signupForm.get('phonenumber').hasError(validation.type) && (signupForm.get('phonenumber').dirty || signupForm.get('phonenumber').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <br>
+                        </ion-item>
+                        <ion-button [disabled]="(signupForm.invalid || addressForm.invalid) && attemptedSubmit"
+                            (click)="signUp()">
+                            Unternehmen erstellen
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>

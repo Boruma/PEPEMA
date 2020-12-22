@@ -1,0 +1,30 @@
+<ion-app>
+    <!--Header-->
+    <app-header style="height: 96px;" [@title]="getTitle(routerOutlet)" [@showHeader]="getShowHeader(routerOutlet)"
+        [@showBackButton]="getShowBackButton(routerOutlet)" [@savedMessage]="getSavedMessage(routerOutlet)">
+    </app-header>
+    <!--Split pane-->
+    <ion-split-pane content-id="content1">
+        <!--Main navigation menu-->
+        <ion-menu side="start" menuId="first" content-id="content1" [ngClass]="{'hidden' : !showMenu(routerOutlet)}">
+            <ion-content>
+                <ion-list lines="full">
+                    <ion-menu-toggle auto-hide="false">
+                        <div *ngFor="let p of pages">
+                            <ion-item [ngClass]="{active: isActive(p)}" (click)="select(p)" button [routerLink]="p.url"
+                                routerDirection="root">
+                                <ion-icon [src]="p.icon" slot="start" class="menu-item"></ion-icon>
+                                <ion-label>
+                                    {{ p.title }}
+                                </ion-label>
+                            </ion-item>
+                        </div>
+
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+        <!--Content-->
+        <ion-router-outlet id="content1" #routerOutlet="outlet"></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>
